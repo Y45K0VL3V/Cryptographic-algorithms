@@ -1,0 +1,9 @@
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\bin\Debug\netstandard2.0\yakov.TI.Lab1.deps.json
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\bin\Debug\netstandard2.0\yakov.TI.Lab1.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\bin\Debug\netstandard2.0\yakov.TI.Lab1.pdb
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.AssemblyInfoInputs.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.AssemblyInfo.cs
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.csproj.CoreCompileInputs.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.pdb
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.csprojAssemblyReference.cache

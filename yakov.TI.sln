@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yakov.TI", "yakov.TI\yakov.TI.csproj", "{D7D6910E-A718-4029-BBA4-6B7848B0191B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yakov.TI.Lab1", "yakov.TI.Lab1\yakov.TI.Lab1.csproj", "{A0ACFAB0-90F1-45E3-AD60-548B0B8D1E19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7D6910E-A718-4029-BBA4-6B7848B0191B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7D6910E-A718-4029-BBA4-6B7848B0191B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7D6910E-A718-4029-BBA4-6B7848B0191B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7D6910E-A718-4029-BBA4-6B7848B0191B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0ACFAB0-90F1-45E3-AD60-548B0B8D1E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0ACFAB0-90F1-45E3-AD60-548B0B8D1E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0ACFAB0-90F1-45E3-AD60-548B0B8D1E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0ACFAB0-90F1-45E3-AD60-548B0B8D1E19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7AE69525-E2F6-43B4-A147-8E392376AE53}
+	EndGlobalSection
+EndGlobal

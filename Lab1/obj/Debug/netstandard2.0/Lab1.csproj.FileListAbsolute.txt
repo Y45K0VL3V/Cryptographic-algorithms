@@ -1,0 +1,4 @@
+C:\Метрология\ТИ\yakov.TI\Lab1\obj\Debug\netstandard2.0\Lab1.csprojAssemblyReference.cache
+C:\Метрология\ТИ\yakov.TI\Lab1\obj\Debug\netstandard2.0\Lab1.AssemblyInfoInputs.cache
+C:\Метрология\ТИ\yakov.TI\Lab1\obj\Debug\netstandard2.0\Lab1.AssemblyInfo.cs
+C:\Метрология\ТИ\yakov.TI\Lab1\obj\Debug\netstandard2.0\Lab1.csproj.CoreCompileInputs.cache
