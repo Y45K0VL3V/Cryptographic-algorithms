@@ -24,8 +24,35 @@ namespace yakov.TI.Lab1.Crypt
             {
                 sbKey.Append(validPart.Value);
             }
-
+            if (int.TryParse(sbKey.ToString(), out int tmp))
+            {
+                if (tmp == 0 || GCD(tmp, Alphabet.Length) != 1) sbKey.Clear();
+            }
             return sbKey.ToString();
+        }
+
+        static int GCD(int a, int b)
+        {
+            if (a == 0)
+            {
+                return b;
+            }
+            else
+            {
+                while (b != 0)
+                {
+                    if (a > b)
+                    {
+                        a -= b;
+                    }
+                    else
+                    {
+                        b -= a;
+                    }
+                }
+
+                return a;
+            }
         }
 
         private static string GetValidChars(string inputText)

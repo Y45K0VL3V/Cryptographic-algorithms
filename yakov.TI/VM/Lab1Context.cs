@@ -253,6 +253,8 @@ namespace yakov.TI.VM
                 {
                     if (CryptKey != "")
                         OutputText = DoCrypt(InputText);
+                    else
+                        OutputText = "";
                 }));
             }
         }

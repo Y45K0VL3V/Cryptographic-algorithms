@@ -1,4 +1,3 @@
-C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.csprojAssemblyReference.cache
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\MainWindow.g.cs
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\App.g.cs
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI_MarkupCompile.cache
@@ -26,3 +25,5 @@ C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\Lab1Page.g.cs
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\Lab1Page.baml
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\LabNoContentPage.g.cs
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\LabNoContentPage.baml
+C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.csproj.AssemblyReference.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.csproj.SuggestedBindingRedirects.cache

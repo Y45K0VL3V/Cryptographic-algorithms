@@ -6,4 +6,5 @@ C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yak
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.csproj.CoreCompileInputs.cache
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.dll
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.pdb
-C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.csprojAssemblyReference.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.csproj.AssemblyReference.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab1\obj\Debug\netstandard2.0\yakov.TI.Lab1.GeneratedMSBuildEditorConfig.editorconfig
