@@ -74,6 +74,7 @@ namespace yakov.TI.Lab1.Crypt
         private static char GetDecryptedChar(char encryptedChar, char keyChar)
         {
             var index = (Alphabet.IndexOf(encryptedChar) - Alphabet.IndexOf(keyChar)) % Alphabet.Length;
+            // TODO: Need this?
             if (index < 0)
             {
                 index = Alphabet.Length + index;
