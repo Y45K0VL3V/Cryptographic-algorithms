@@ -9,18 +9,22 @@ namespace yakov.TI.Lab2.Crypt
 {
     public static class StreamCrypt
     {
-        public static string Encrypt(LFSR keyGenerator, string inputText)
+        /// <summary>
+        /// Crypt/decrypt input.
+        /// </summary>
+        /// <param name="keyGenerator">LFSR generator</param>
+        /// <param name="text">(en/de)crypted text</param>
+        /// <returns>Gives input XORed with key.</returns>
+        public static string Crypt(LFSR keyGenerator, string text)
         {
-            string encryptedText = default;
+            var encryptedBytes = new List<byte>();
+            foreach (byte currByte in Encoding.UTF8.GetBytes(text))
+            {
+                encryptedBytes.Add((byte)(currByte ^ keyGenerator.GetRandomByte()));
+            }
 
-            return encryptedText;
+            return Encoding.UTF8.GetString(encryptedBytes.ToArray());
         }
 
-        public static string Decrypt(LFSR keyGenerator, string encryptedText)
-        {
-            string decryptedText = default;
-
-            return decryptedText;
-        }
     }
 }
