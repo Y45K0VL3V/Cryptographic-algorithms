@@ -9,6 +9,12 @@ namespace yakov.TI.Lab2.KeyGenerators
 {
     public class LFSR
     {
+        /// <summary>
+        /// Create and set LFSR key generator parameters.
+        /// </summary>
+        /// <param name="registerLength"></param>
+        /// <param name="polynom">Polynom, that determine the way of getting "random" bits.
+        /// Example: x^7+x^2+x^1+1. Polynom power should be less or equal register length. </param>
         public LFSR(byte registerLength, string polynom)
         {
             RegisterLength = registerLength;
