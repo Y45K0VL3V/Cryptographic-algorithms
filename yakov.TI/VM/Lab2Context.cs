@@ -140,8 +140,25 @@ namespace yakov.TI.VM
                 _generator.SetRegisterState(Convert.ToInt64(StartState, 2));
                 var inputBytes = new List<byte>();
                 foreach (string strByte in input.Split(' '))
-                    inputBytes.Add(Convert.ToByte(strByte, 2));
+                {
+                    try
+                    {
+                        StringBuilder stringBuilder = new();
+                        foreach (Match digits in Regex.Matches(strByte, "[01]"))
+                        {
+                            stringBuilder.Append(digits.Value);
+                            if (stringBuilder.Length == 8)
+                                break;
+                        }
 
+                        inputBytes.Add(Convert.ToByte(stringBuilder.ToString(), 2));
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+
+                }
                 result = StreamCrypt.CryptBinary(_generator, inputBytes.ToArray(), out string keyBinary);
                 UsedKeyBinary = keyBinary;
             }
