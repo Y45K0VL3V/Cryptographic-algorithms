@@ -46,6 +46,7 @@ namespace yakov.TI.VM
             }
         }
 
+        #region Crypt info
         private string _inputText;
         public string InputText
         {
@@ -73,7 +74,9 @@ namespace yakov.TI.VM
                 OnPropertyChanged("OutputText");
             }
         }
+        #endregion
 
+        #region Binary crypt info.
         private string _usedKeyBinary;
         public string UsedKeyBinary
         {
@@ -88,6 +91,35 @@ namespace yakov.TI.VM
             }
         }
 
+        private string _inputTextBinary;
+        public string InputTextBinary
+        {
+            get
+            {
+                return _inputTextBinary;
+            }
+            set
+            {
+                _inputTextBinary = value;
+                OnPropertyChanged("InputTextBinary");
+            }
+        }
+
+        private string _outputTextBinary;
+        public string OutputTextBinary
+        {
+            get
+            {
+                return _outputTextBinary;
+            }
+            set
+            {
+                _outputTextBinary = value;
+                OnPropertyChanged("OutputTextBinary");
+            }
+        }
+        #endregion
+
         private RelayCommand _doCryptCommand;
         public RelayCommand DoCryptCommand
         {
@@ -95,12 +127,13 @@ namespace yakov.TI.VM
             {
                 return _doCryptCommand ?? (_doCryptCommand = new RelayCommand(obj =>
                 {
-                    string key;
                     _generator.SetRegisterState(Convert.ToInt64(StartState, 2));
                     if (StartState != "")
                     {
-                        OutputText = StreamCrypt.Crypt(_generator, InputText, out key);
-                        UsedKeyBinary = key;
+                        OutputText = StreamCrypt.Crypt(_generator, InputText, out string keyBinary, out string inputBinary, out string outputBinary);
+                        UsedKeyBinary = keyBinary;
+                        InputTextBinary = inputBinary;
+                        OutputTextBinary = outputBinary;
                     }
                     else
                     {
