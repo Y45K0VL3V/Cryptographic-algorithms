@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,6 +30,7 @@ namespace yakov.TI.VM
             }
             set
             {
+                _startState = "";
                 StringBuilder stateStr = new();
                 foreach (Match match in Regex.Matches(value, "[01]+"))
                 {
@@ -120,6 +123,36 @@ namespace yakov.TI.VM
         }
         #endregion
 
+        private void ClearFields()
+        {
+            UsedKeyBinary = "";
+            OutputText = "";
+            InputText = "";
+            InputTextBinary = "";
+            OutputTextBinary = "";
+        }
+
+        private string CryptBinaryMethod(string input)
+        {
+            string result = null;
+            if (StartState != "")
+            {
+                _generator.SetRegisterState(Convert.ToInt64(StartState, 2));
+                var inputBytes = new List<byte>();
+                foreach (string strByte in input.Split(' '))
+                    inputBytes.Add(Convert.ToByte(strByte, 2));
+
+                result = StreamCrypt.CryptBinary(_generator, inputBytes.ToArray(), out string keyBinary);
+                UsedKeyBinary = keyBinary;
+            }
+            else
+            {
+                ClearFields();
+            }
+
+            return result ?? "";
+        }
+
         private RelayCommand _doCryptCommand;
         public RelayCommand DoCryptCommand
         {
@@ -127,9 +160,9 @@ namespace yakov.TI.VM
             {
                 return _doCryptCommand ?? (_doCryptCommand = new RelayCommand(obj =>
                 {
-                    _generator.SetRegisterState(Convert.ToInt64(StartState, 2));
                     if (StartState != "")
                     {
+                        _generator.SetRegisterState(Convert.ToInt64(StartState, 2));
                         OutputText = StreamCrypt.Crypt(_generator, InputText, out string keyBinary, out string inputBinary, out string outputBinary);
                         UsedKeyBinary = keyBinary;
                         InputTextBinary = inputBinary;
@@ -137,12 +170,83 @@ namespace yakov.TI.VM
                     }
                     else
                     {
-                        UsedKeyBinary = "";
-                        OutputText = "";
+                        ClearFields();
                     }
                 }));
             }
         }
+
+        private RelayCommand _doBinaryCryptCommand;
+        public RelayCommand DoBinaryCryptCommand
+        {
+            get
+            {
+                return _doBinaryCryptCommand ?? (_doBinaryCryptCommand = new RelayCommand(obj =>
+                {
+                    OutputTextBinary = CryptBinaryMethod(InputTextBinary);
+                }));
+            }
+        }
+
+        #region Work with files.
+        private string _fileText { get; set; }
+        private string _fileOutput { get; set; }
+
+        private string _filePath;
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+            set
+            {
+                _filePath = value;
+                using (StreamReader sr = new StreamReader(value))
+                {
+                    _fileText = sr.ReadToEnd();
+                }
+                OnPropertyChanged("FilePath");
+            }
+        }
+
+        private RelayCommand _getInputFile;
+        public RelayCommand GetInputFile
+        {
+            get
+            {
+                return _getInputFile ?? (_getInputFile = new RelayCommand(obj =>
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        FilePath = openFileDialog.FileName;
+                    }
+                }));
+            }
+        }
+
+
+        private RelayCommand _saveProcessedFile;
+        public RelayCommand SaveProcessedFile
+        {
+            get
+            {
+                return _saveProcessedFile ?? (_saveProcessedFile = new RelayCommand(obj =>
+                {
+                    if (StartState != "")
+                    {
+                        _outputText = CryptBinaryMethod(_fileText);
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        if (saveFileDialog.ShowDialog() == true)
+                        {
+                            File.WriteAllText(saveFileDialog.FileName, _outputText);
+                        }
+                    }
+                }));
+            }
+        }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop = "")

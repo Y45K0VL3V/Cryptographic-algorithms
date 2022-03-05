@@ -114,7 +114,6 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                          materialDesign:HintAssist.Hint="Text to process (binary)"
                          TextWrapping="Wrap"
-                         IsReadOnly="True"
                          Text="{Binding InputTextBinary}"/>
                 
                 <TextBox Grid.Row="2"
@@ -128,6 +127,9 @@
                          IsReadOnly="True"
                          Text="{Binding OutputTextBinary}"/>
                 <Button Grid.Row="1" Grid.Column="1" Width="75" Style="{StaticResource MaterialDesignPaperDarkButton}" Command="{Binding DoCryptCommand}">
+                    <materialDesign:PackIcon Kind="ArrowRight" Height="25" Width="25"/>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="1" Width="75" Style="{StaticResource MaterialDesignPaperDarkButton}" Command="{Binding DoBinaryCryptCommand}">
                     <materialDesign:PackIcon Kind="ArrowRight" Height="25" Width="25"/>
                 </Button>
             </Grid>
