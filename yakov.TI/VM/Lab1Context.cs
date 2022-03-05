@@ -253,6 +253,15 @@ namespace yakov.TI.VM
             }
         }
 
+        private void AddBinary(string inputToBinary)
+        {
+            StringBuilder bytes = new();
+            foreach(byte currChar in inputToBinary)
+            {
+                bytes.Append(currChar);
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop = "")
         {

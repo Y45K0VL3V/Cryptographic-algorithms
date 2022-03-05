@@ -15,15 +15,20 @@ namespace yakov.TI.Lab2.Crypt
         /// <param name="keyGenerator">LFSR generator</param>
         /// <param name="text">(en/de)crypted text</param>
         /// <returns>Gives input XORed with key.</returns>
-        public static string Crypt(LFSR keyGenerator, string text)
+        public static string Crypt(LFSR keyGenerator, string text, out string usedKeyBinary)
         {
             var encryptedBytes = new List<byte>();
-            foreach (byte currByte in Encoding.UTF8.GetBytes(text))
+            StringBuilder cryptResult = new StringBuilder();
+            StringBuilder sbUsedKeyBinary = new StringBuilder();
+            foreach (byte currByte in text)
             {
-                encryptedBytes.Add((byte)(currByte ^ keyGenerator.GetRandomByte()));
+                byte rndByte = keyGenerator.GetRandomByte();
+                sbUsedKeyBinary.Append(Convert.ToString(rndByte, 2).PadLeft(8, '0') + " ");
+                cryptResult.Append((char)(currByte ^ rndByte));
             }
 
-            return Encoding.UTF8.GetString(encryptedBytes.ToArray());
+            usedKeyBinary = sbUsedKeyBinary.ToString();
+            return cryptResult.ToString();
         }
 
     }
