@@ -9,10 +9,16 @@ using yakov.TI.LabPages;
 
 namespace yakov.TI.VM
 {
+    public enum CryptMode
+    {
+        Encryption,
+        Decryption
+    }
+
     public class MainContext: INotifyPropertyChanged
     {
         private Lab1Page _lab1page = new();
-        private LabNoContentPage _lab2Page = new();
+        private Lab2Page _lab2Page = new();
         private LabNoContentPage _lab3Page = new();
         private LabNoContentPage _lab4Page = new();
 

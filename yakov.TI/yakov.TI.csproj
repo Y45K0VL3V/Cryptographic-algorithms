@@ -65,13 +65,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LabPages\Lab2Page.xaml.cs">
+      <DependentUpon>Lab2Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LabPages\LabNoContentPage.xaml.cs">
       <DependentUpon>LabNoContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="VM\Lab1Context.cs" />
+    <Compile Include="VM\Lab2Context.cs" />
     <Compile Include="VM\MainContext.cs" />
     <Compile Include="VM\RelayCommand.cs" />
     <Page Include="LabPages\Lab1Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LabPages\Lab2Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,6 @@
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\bin\Debug\yakov.TI.Lab2.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\bin\Debug\yakov.TI.Lab2.pdb
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.csproj.AssemblyReference.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.csproj.CoreCompileInputs.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.pdb

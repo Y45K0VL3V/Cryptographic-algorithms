@@ -27,3 +27,7 @@ C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\LabNoContentPa
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\LabNoContentPage.baml
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.csproj.AssemblyReference.cache
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.csproj.SuggestedBindingRedirects.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI\bin\Debug\yakov.TI.Lab2.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI\bin\Debug\yakov.TI.Lab2.pdb
+C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\Lab2Page.g.cs
+C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\Lab2Page.baml

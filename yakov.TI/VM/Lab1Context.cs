@@ -17,12 +17,6 @@ namespace yakov.TI.VM
         Vigenere
     }
 
-    public enum CryptMode
-    {
-        Encryption,
-        Decryption
-    }
-
     public class Lab1Context: INotifyPropertyChanged
     {
         private string _cryptKey;
