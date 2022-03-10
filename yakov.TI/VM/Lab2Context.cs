@@ -159,7 +159,9 @@ namespace yakov.TI.VM
                     }
 
                 }
-                result = StreamCrypt.CryptBinary(_generator, inputBytes.ToArray(), out string keyBinary);
+
+                var inputBytesArr = inputBytes.ToArray();
+                result = StreamCrypt.CryptBinary(_generator, ref inputBytesArr, out string keyBinary);
                 UsedKeyBinary = keyBinary;
             }
             else
@@ -206,8 +208,7 @@ namespace yakov.TI.VM
         }
 
         #region Work with files.
-        private string _fileText { get; set; }
-        private string _fileOutput { get; set; }
+        private byte[] _fileInOutputBytes;
 
         private string _filePath;
         public string FilePath
@@ -219,10 +220,17 @@ namespace yakov.TI.VM
             set
             {
                 _filePath = value;
-                using (StreamReader sr = new StreamReader(value))
+
+                StringBuilder temp = new();
+                _fileInOutputBytes = File.ReadAllBytes(value);
+                foreach (byte currByte in _fileInOutputBytes)
                 {
-                    _fileText = sr.ReadToEnd();
+                    temp.Append(Convert.ToString(currByte, 2).PadLeft(8, '0') + " ");
                 }
+
+                ClearFields();
+                InputTextBinary = temp.ToString();
+
                 OnPropertyChanged("FilePath");
             }
         }
@@ -253,11 +261,14 @@ namespace yakov.TI.VM
                 {
                     if (StartState != "")
                     {
-                        _outputText = CryptBinaryMethod(_fileText);
+                        _outputText = CryptBinaryMethod(InputTextBinary);
+                        StreamCrypt.CryptBinary(_generator,ref _fileInOutputBytes, out string keyBinary);
+                        UsedKeyBinary = keyBinary;
+
                         SaveFileDialog saveFileDialog = new SaveFileDialog();
                         if (saveFileDialog.ShowDialog() == true)
                         {
-                            File.WriteAllText(saveFileDialog.FileName, _outputText);
+                            File.WriteAllBytes(saveFileDialog.FileName, _fileInOutputBytes);
                         }
                     }
                 }));
