@@ -37,15 +37,25 @@ namespace yakov.TI.Lab2.KeyGenerators
             return bitsIndex;
         }
 
+        public static string ParseInput(string input)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(Match m in Regex.Matches(input, "[01]+"))
+            {
+                sb.Append(m.Value);
+            }
+            return sb.ToString();
+        }
+
         public byte RegisterLength { get; }
         public long RegisterState { get; set; }
         
         private readonly long _registerMask;
         private readonly List<byte> _xorBitsIndex;
 
-        public void SetRegisterState(long state)
+        public void SetRegisterState(string state)
         {
-            RegisterState = state;
+            RegisterState = Convert.ToInt64(ParseInput(state), 2);
         }
 
         public byte GetRandomByte()

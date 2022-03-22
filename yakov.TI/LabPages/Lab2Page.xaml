@@ -58,7 +58,7 @@
                          VerticalContentAlignment="Center"
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
-                         Text="{Binding UsedKeyBinary}"
+                         
                          IsReadOnly="True"/>
             </Grid>
         </materialDesign:Card>
@@ -67,46 +67,23 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
-                           Grid.ColumnSpan="3"
-                           Text="Сrypt in application!"
+                           Grid.ColumnSpan="2"
+                           Text="Crypt info"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
                            Margin="0,10,0,0" 
                            FontSize="32" 
                            Foreground="{DynamicResource PrimaryHueLightBrush}"
                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"/>
-                <TextBox Grid.Row="1"
-                         Grid.Column="0"
-                         VerticalAlignment="Stretch"
-                         HorizontalAlignment="Stretch"
-                         Margin="20,10,15,10" 
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                         materialDesign:HintAssist.Hint="Text to process"
-                         TextWrapping="Wrap"
-                         Text="{Binding InputText}" 
-                         AcceptsReturn="True"/>
 
                 <TextBox Grid.Row="1"
-                         Grid.Column="2"
-                         VerticalAlignment="Stretch"
-                         HorizontalAlignment="Stretch"
-                         Margin="15,10,20,10" 
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                         materialDesign:HintAssist.Hint="ResultText"
-                         TextWrapping="Wrap"
-                         IsReadOnly="True"
-                         Text="{Binding OutputText}"/>
-
-                <TextBox Grid.Row="2"
                          Grid.Column="0"
                          VerticalAlignment="Stretch"
                          HorizontalAlignment="Stretch"
@@ -114,10 +91,10 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                          materialDesign:HintAssist.Hint="Text to process (binary)"
                          TextWrapping="Wrap"
-                         Text="{Binding InputTextBinary}"/>
-                
-                <TextBox Grid.Row="2"
-                         Grid.Column="2"
+                         />
+
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
                          VerticalAlignment="Stretch"
                          HorizontalAlignment="Stretch"
                          Margin="15,10,20,10" 
@@ -125,13 +102,7 @@
                          materialDesign:HintAssist.Hint="ResultText (binary)"
                          TextWrapping="Wrap"
                          IsReadOnly="True"
-                         Text="{Binding OutputTextBinary}"/>
-                <Button Grid.Row="1" Grid.Column="1" Width="75" Style="{StaticResource MaterialDesignPaperDarkButton}" Command="{Binding DoCryptCommand}">
-                    <materialDesign:PackIcon Kind="ArrowRight" Height="25" Width="25"/>
-                </Button>
-                <Button Grid.Row="2" Grid.Column="1" Width="75" Style="{StaticResource MaterialDesignPaperDarkButton}" Command="{Binding DoBinaryCryptCommand}">
-                    <materialDesign:PackIcon Kind="ArrowRight" Height="25" Width="25"/>
-                </Button>
+                         />
             </Grid>
         </materialDesign:Card>
 

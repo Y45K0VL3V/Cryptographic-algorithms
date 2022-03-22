@@ -31,53 +31,19 @@ namespace yakov.TI.VM
             set
             {
                 _startState = "";
-                StringBuilder stateStr = new();
-                foreach (Match match in Regex.Matches(value, "[01]+"))
-                {
-                    stateStr.Append(match.Value);
-                }
+                var temp = LFSR.ParseInput(value);
 
-                if (stateStr.Length < 1)
+                if (temp.Length < 1)
                     throw new ArgumentException("Not enough chars");
 
-                if (stateStr.Length > _generator.RegisterLength)
+                if (temp.Length > _generator.RegisterLength)
                     throw new ArgumentException("Register length exceeded");
 
-                _generator.SetRegisterState(Convert.ToInt64(stateStr.ToString(), 2));
-                _startState = stateStr.ToString();
+                _generator.SetRegisterState(value);
+                _startState = value;
                 OnPropertyChanged("StartState");
             }
         }
-
-        #region Crypt info
-        private string _inputText;
-        public string InputText
-        {
-            get
-            {
-                return _inputText ?? "";
-            }
-            set
-            {
-                _inputText = value;
-                OnPropertyChanged("InputText");
-            }
-        }
-
-        private string _outputText;
-        public string OutputText
-        {
-            get
-            {
-                return _outputText;
-            }
-            set
-            {
-                _outputText = value;
-                OnPropertyChanged("OutputText");
-            }
-        }
-        #endregion
 
         #region Binary crypt info.
         private string _usedKeyBinary;
@@ -126,89 +92,12 @@ namespace yakov.TI.VM
         private void ClearFields()
         {
             UsedKeyBinary = "";
-            OutputText = "";
-            InputText = "";
             InputTextBinary = "";
             OutputTextBinary = "";
         }
 
-        private string CryptBinaryMethod(string input)
-        {
-            string result = null;
-            if (StartState != "")
-            {
-                _generator.SetRegisterState(Convert.ToInt64(StartState, 2));
-                var inputBytes = new List<byte>();
-                foreach (string strByte in input.Split(' '))
-                {
-                    try
-                    {
-                        StringBuilder stringBuilder = new();
-                        foreach (Match digits in Regex.Matches(strByte, "[01]"))
-                        {
-                            stringBuilder.Append(digits.Value);
-                            if (stringBuilder.Length == 8)
-                                break;
-                        }
-
-                        inputBytes.Add(Convert.ToByte(stringBuilder.ToString(), 2));
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-
-                }
-
-                var inputBytesArr = inputBytes.ToArray();
-                result = StreamCrypt.CryptBinary(_generator, ref inputBytesArr, out string keyBinary);
-                UsedKeyBinary = keyBinary;
-            }
-            else
-            {
-                ClearFields();
-            }
-
-            return result ?? "";
-        }
-
-        private RelayCommand _doCryptCommand;
-        public RelayCommand DoCryptCommand
-        {
-            get
-            {
-                return _doCryptCommand ?? (_doCryptCommand = new RelayCommand(obj =>
-                {
-                    if (StartState != "")
-                    {
-                        _generator.SetRegisterState(Convert.ToInt64(StartState, 2));
-                        OutputText = StreamCrypt.Crypt(_generator, InputText, out string keyBinary, out string inputBinary, out string outputBinary);
-                        UsedKeyBinary = keyBinary;
-                        InputTextBinary = inputBinary;
-                        OutputTextBinary = outputBinary;
-                    }
-                    else
-                    {
-                        ClearFields();
-                    }
-                }));
-            }
-        }
-
-        private RelayCommand _doBinaryCryptCommand;
-        public RelayCommand DoBinaryCryptCommand
-        {
-            get
-            {
-                return _doBinaryCryptCommand ?? (_doBinaryCryptCommand = new RelayCommand(obj =>
-                {
-                    OutputTextBinary = CryptBinaryMethod(InputTextBinary);
-                }));
-            }
-        }
-
         #region Work with files.
-        private byte[] _fileInOutputBytes;
+        private byte[] _fileInputBytes;
 
         private string _filePath;
         public string FilePath
@@ -222,8 +111,8 @@ namespace yakov.TI.VM
                 _filePath = value;
 
                 StringBuilder temp = new();
-                _fileInOutputBytes = File.ReadAllBytes(value);
-                foreach (byte currByte in _fileInOutputBytes)
+                _fileInputBytes = File.ReadAllBytes(value);
+                foreach (byte currByte in _fileInputBytes)
                 {
                     temp.Append(Convert.ToString(currByte, 2).PadLeft(8, '0') + " ");
                 }
@@ -259,17 +148,19 @@ namespace yakov.TI.VM
             {
                 return _saveProcessedFile ?? (_saveProcessedFile = new RelayCommand(obj =>
                 {
-                    if (StartState != "")
+                    if (LFSR.ParseInput(StartState).Length >= 1)
                     {
-                        _outputText = CryptBinaryMethod(InputTextBinary);
-                        StreamCrypt.CryptBinary(_generator,ref _fileInOutputBytes, out string keyBinary);
+                        byte[] inputBytesCopy = new byte[_fileInputBytes.Length];
+                        _fileInputBytes.CopyTo(inputBytesCopy, 0);
+                        OutputTextBinary = StreamCrypt.CryptBinary(_generator,ref inputBytesCopy, out string keyBinary);
                         UsedKeyBinary = keyBinary;
 
                         SaveFileDialog saveFileDialog = new SaveFileDialog();
                         if (saveFileDialog.ShowDialog() == true)
                         {
-                            File.WriteAllBytes(saveFileDialog.FileName, _fileInOutputBytes);
+                            File.WriteAllBytes(saveFileDialog.FileName, inputBytesCopy);
                         }
+                        _generator.SetRegisterState(StartState);
                     }
                 }));
             }
