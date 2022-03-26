@@ -16,7 +16,7 @@
       FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid Margin="15">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
@@ -41,7 +41,6 @@
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center"
                          Margin="15,15,15,15"  
-
                          MinWidth="120"
                          HorizontalContentAlignment="Center"
                          materialDesign:ValidationAssist.Background="Transparent"
@@ -58,7 +57,7 @@
                          VerticalContentAlignment="Center"
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
-                         
+                         Text="{Binding UsedKeyBinary}"
                          IsReadOnly="True"/>
             </Grid>
         </materialDesign:Card>
@@ -91,7 +90,9 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                          materialDesign:HintAssist.Hint="Text to process (binary)"
                          TextWrapping="Wrap"
-                         />
+                         Text="{Binding InputTextBinary}"                     
+                         VerticalScrollBarVisibility="Visible"
+                         IsReadOnly="True"/>
 
                 <TextBox Grid.Row="1"
                          Grid.Column="1"
@@ -101,8 +102,9 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                          materialDesign:HintAssist.Hint="ResultText (binary)"
                          TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Visible"
                          IsReadOnly="True"
-                         />
+                         Text="{Binding OutputTextBinary}"/>
             </Grid>
         </materialDesign:Card>
 
