@@ -1,0 +1,5 @@
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\obj\Debug\net6.0\yakov.TI.Lab3.csproj.AssemblyReference.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\obj\Debug\net6.0\yakov.TI.Lab3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\obj\Debug\net6.0\yakov.TI.Lab3.AssemblyInfoInputs.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\obj\Debug\net6.0\yakov.TI.Lab3.AssemblyInfo.cs
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\obj\Debug\net6.0\yakov.TI.Lab3.csproj.CoreCompileInputs.cache
