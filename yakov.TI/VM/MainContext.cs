@@ -19,7 +19,7 @@ namespace yakov.TI.VM
     {
         private Lab1Page _lab1page = new();
         private Lab2Page _lab2Page = new();
-        private LabNoContentPage _lab3Page = new();
+        private Lab3Page _lab3Page = new();
         private LabNoContentPage _lab4Page = new();
 
         private Page _currentPage;

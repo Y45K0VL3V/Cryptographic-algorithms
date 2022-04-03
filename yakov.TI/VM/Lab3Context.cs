@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,154 +11,188 @@ using yakov.TI.Lab3;
 namespace yakov.TI.VM
 {
     public class Lab3Context : INotifyPropertyChanged
-    { 
-        //private LFSR _generator;
+    {
+        public CryptMode Mode { get; set; }
 
-        //private string _startState;
-        //public string StartState
-        //{
-        //    get
-        //    {
-        //        return _startState ?? "";
-        //    }
-        //    set
-        //    {
-        //        _startState = "";
-        //        var temp = LFSR.ParseInput(value);
+        public bool IsEncryption
+        {
+            get { return Mode == CryptMode.Encryption; }
+            set { Mode = value ? CryptMode.Encryption : Mode; }
+        }
 
-        //        if (temp.Length < 1)
-        //            throw new ArgumentException("Not enough chars");
+        public bool IsDecryption
+        {
+            get { return Mode == CryptMode.Decryption; }
+            set { Mode = value ? CryptMode.Decryption : Mode; }
+        }
 
-        //        if (temp.Length > _generator.RegisterLength)
-        //            throw new ArgumentException("Register length exceeded");
+        private string _privateKeyP;
+        public string PrivateKeyP
+        {
+            get
+            {
+                return _privateKeyP;
+            }
+            set
+            {
+                _privateKeyP = value;
+                OnPropertyChanged("PrivateKeyP");
+            }
+        }
 
-        //        _generator.SetRegisterState(value);
-        //        _startState = value;
-        //        OnPropertyChanged("StartState");
-        //    }
-        //}
+        private string _privateKeyQ;
+        public string PrivateKeyQ
+        {
+            get
+            {
+                return _privateKeyQ;
+            }
+            set
+            {
+                _privateKeyQ = value;
+                OnPropertyChanged("PrivateKeyQ");
+            }
+        }
 
-        //#region Binary crypt info.
-        //private string _usedKeyBinary;
-        //public string UsedKeyBinary
-        //{
-        //    get
-        //    {
-        //        return _usedKeyBinary;
-        //    }
-        //    set
-        //    {
-        //        _usedKeyBinary = value;
-        //        OnPropertyChanged("UsedKeyBinary");
-        //    }
-        //}
+        private string _publicKeyN;
+        public string PublicKeyN
+        {
+            get
+            {
+                return _publicKeyN;
+            }
+            set
+            {
+                _publicKeyN = value;
+                OnPropertyChanged("PublicKeyN");
+            }
+        }
 
-        //private string _inputTextBinary;
-        //public string InputTextBinary
-        //{
-        //    get
-        //    {
-        //        return _inputTextBinary;
-        //    }
-        //    set
-        //    {
-        //        _inputTextBinary = value;
-        //        OnPropertyChanged("InputTextBinary");
-        //    }
-        //}
+        private string _publicKeyB;
+        public string PublicKeyB
+        {
+            get
+            {
+                return _publicKeyB;
+            }
+            set
+            {
+                _publicKeyB = value;
+                OnPropertyChanged("PublicKeyB");
+            }
+        }
 
-        //private string _outputTextBinary;
-        //public string OutputTextBinary
-        //{
-        //    get
-        //    {
-        //        return _outputTextBinary;
-        //    }
-        //    set
-        //    {
-        //        _outputTextBinary = value;
-        //        OnPropertyChanged("OutputTextBinary");
-        //    }
-        //}
-        //#endregion
+        #region Crypt info.
+        private string _sourceFileDataDec;
+        public string SourceFileDataDec
+        {
+            get
+            {
+                return _sourceFileDataDec;
+            }
+            set
+            {
+                _sourceFileDataDec = value;
+                OnPropertyChanged("SourceFileDataDec");
+            }
+        }
 
-        //private void ClearFields()
-        //{
-        //    UsedKeyBinary = "";
-        //    InputTextBinary = "";
-        //    OutputTextBinary = "";
-        //}
+        private string _destFileDataDec;
+        public string DestFileDataDec
+        {
+            get
+            {
+                return _destFileDataDec;
+            }
+            set
+            {
+                _destFileDataDec = value;
+                OnPropertyChanged("DestFileDataDec");
+            }
+        }
+        #endregion
 
-        //#region Work with files.
-        //private byte[] _fileInputBytes;
+        private void ClearFields()
+        {
+            SourceFileDataDec = "";
+            DestFileDataDec = "";
+        }
 
-        //private string _filePath;
-        //public string FilePath
-        //{
-        //    get
-        //    {
-        //        return _filePath;
-        //    }
-        //    set
-        //    {
-        //        _filePath = value;
+        #region Work with files.
+        private byte[] _fileInputBytes;
 
-        //        StringBuilder temp = new();
-        //        _fileInputBytes = File.ReadAllBytes(value);
-        //        foreach (byte currByte in _fileInputBytes)
-        //        {
-        //            temp.Append(Convert.ToString(currByte, 2).PadLeft(8, '0') + " ");
-        //        }
+        private string _filePath;
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+            set
+            {
+                _filePath = value;
 
-        //        ClearFields();
-        //        InputTextBinary = temp.ToString();
+                StringBuilder temp = new();
+                _fileInputBytes = File.ReadAllBytes(value);
+                foreach (byte currByte in _fileInputBytes)
+                {
+                    temp.Append(currByte.ToString() + " ");
+                }
 
-        //        OnPropertyChanged("FilePath");
-        //    }
-        //}
+                ClearFields();
+                SourceFileDataDec = temp.ToString();
 
-        //private RelayCommand _getInputFile;
-        //public RelayCommand GetInputFile
-        //{
-        //    get
-        //    {
-        //        return _getInputFile ?? (_getInputFile = new RelayCommand(obj =>
-        //        {
-        //            OpenFileDialog openFileDialog = new OpenFileDialog();
-        //            if (openFileDialog.ShowDialog() == true)
-        //            {
-        //                FilePath = openFileDialog.FileName;
-        //            }
-        //        }));
-        //    }
-        //}
+                OnPropertyChanged("FilePath");
+            }
+        }
+
+        private RelayCommand _getInputFile;
+        public RelayCommand GetInputFile
+        {
+            get
+            {
+                return _getInputFile ?? (_getInputFile = new RelayCommand(obj =>
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        FilePath = openFileDialog.FileName;
+                    }
+                }));
+            }
+        }
 
 
-        //private RelayCommand _saveProcessedFile;
-        //public RelayCommand SaveProcessedFile
-        //{
-        //    get
-        //    {
-        //        return _saveProcessedFile ?? (_saveProcessedFile = new RelayCommand(obj =>
-        //        {
-        //            if (LFSR.ParseInput(StartState).Length >= 1)
-        //            {
-        //                byte[] inputBytesCopy = new byte[_fileInputBytes.Length];
-        //                _fileInputBytes.CopyTo(inputBytesCopy, 0);
-        //                OutputTextBinary = StreamCrypt.CryptBinary(_generator, ref inputBytesCopy, out string keyBinary);
-        //                UsedKeyBinary = keyBinary;
+        private RelayCommand _saveProcessedFile;
+        public RelayCommand SaveProcessedFile
+        {
+            get
+            {
+                return _saveProcessedFile ?? (_saveProcessedFile = new RelayCommand(obj =>
+                {
+                    byte[] resultBytes;
+                    switch (Mode)
+                    {
+                        case CryptMode.Encryption:
+                            resultBytes = RabinCrypt.Encrypt();
+                            break;
 
-        //                SaveFileDialog saveFileDialog = new SaveFileDialog();
-        //                if (saveFileDialog.ShowDialog() == true)
-        //                {
-        //                    File.WriteAllBytes(saveFileDialog.FileName, inputBytesCopy);
-        //                }
-        //                _generator.SetRegisterState(StartState);
-        //            }
-        //        }));
-        //    }
-        //}
-        //#endregion
+                        case CryptMode.Decryption:
+                            resultBytes = RabinCrypt.Decrypt();
+                            break;
+                    }
+
+                    
+
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    if (saveFileDialog.ShowDialog() == true)
+                    {
+                        File.WriteAllBytes(saveFileDialog.FileName, resultBytes);
+                    }
+                }));
+            }
+        }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop = "")

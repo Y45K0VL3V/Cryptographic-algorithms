@@ -33,8 +33,7 @@
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="1" 
-                           Grid.RowSpan="2"
+                <TextBlock Grid.Column="1"
                            Text="Settings"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
@@ -42,6 +41,14 @@
                            FontSize="32" 
                            Foreground="{DynamicResource PrimaryHueLightBrush}"
                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"/>
+                <StackPanel x:Name="radioCryptMode"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="0,0,0,5"
+                            VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <RadioButton GroupName="CryptMode" Content="Encryption" IsChecked="{Binding IsEncryption}"/>
+                    <RadioButton GroupName="CryptMode" Content="Decryption" IsChecked="{Binding IsDecryption}"/>
+                </StackPanel>
                 <TextBox Grid.Column="0"
                          Grid.Row="0"
                          materialDesign:HintAssist.Hint="Private key (P)"
