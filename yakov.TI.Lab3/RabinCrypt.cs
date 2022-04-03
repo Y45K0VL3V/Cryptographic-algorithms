@@ -26,12 +26,13 @@ namespace yakov.TI.Lab3
             if (publicKeyN >= publicKeyB)
                 throw new Exception("Public key B must be lower, than N");
 
-            byte[] encryptedData = new byte[publicKeyN.GetByteCount() * inputData.Length];
+            int maxEncryptedCapacity = publicKeyN.ToByteArray().Length;
+            byte[] encryptedData = new byte[maxEncryptedCapacity * inputData.Length];
 
             for(int i = 0; i <= inputData.Length - 1; i++)
             {
                 byte currByte = inputData[i];
-                (currByte * (currByte + publicKeyB) % publicKeyN).ToByteArray().CopyTo(encryptedData, i * publicKeyN.GetByteCount());
+                (currByte * (currByte + publicKeyB) % publicKeyN).ToByteArray().CopyTo(encryptedData, i * maxEncryptedCapacity);
             }
 
             return encryptedData;
@@ -44,11 +45,12 @@ namespace yakov.TI.Lab3
             s_currEncryptedPos = 0;
             BigInteger publicKeyN = privateKeyP * privateKeyQ;
 
-            var decryptedBytes = new byte[encryptedData.Length/publicKeyN.GetByteCount()];
+            int maxEncryptedCapacity = publicKeyN.ToByteArray().Length;
+            var decryptedBytes = new byte[encryptedData.Length/ maxEncryptedCapacity];
 
-            for (long i = 0; i <= encryptedData.Length/publicKeyN.GetByteCount() - 1; i++)
+            for (long i = 0; i <= encryptedData.Length/ maxEncryptedCapacity - 1; i++)
             {
-                var currNumber = new BigInteger(GetNumberBytes(encryptedData, publicKeyN.GetByteCount()));
+                var currNumber = new BigInteger(GetNumberBytes(encryptedData, maxEncryptedCapacity));
                 decryptedBytes[i] = DecryptNumber(currNumber, privateKeyQ, privateKeyP, publicKeyN, publicKeyB);
             }
             
@@ -74,7 +76,7 @@ namespace yakov.TI.Lab3
             (mResults[1], mResults[3]) = (publicKeyN - mResults[0], publicKeyN - mResults[2]);
 
             foreach (BigInteger currRes in mResults)
-                if (currRes.GetByteCount() == 1)
+                if (currRes.ToByteArray().Length == 1)
                     return currRes.ToByteArray().First();
 
             return 0;

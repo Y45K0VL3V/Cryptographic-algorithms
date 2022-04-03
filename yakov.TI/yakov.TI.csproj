@@ -45,7 +45,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.3.0.3, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.3.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,11 +70,15 @@
     <Compile Include="LabPages\Lab2Page.xaml.cs">
       <DependentUpon>Lab2Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LabPages\Lab3Page.xaml.cs">
+      <DependentUpon>Lab3Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LabPages\LabNoContentPage.xaml.cs">
       <DependentUpon>LabNoContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="VM\Lab1Context.cs" />
     <Compile Include="VM\Lab2Context.cs" />
+    <Compile Include="VM\Lab3Context.cs" />
     <Compile Include="VM\MainContext.cs" />
     <Compile Include="VM\RelayCommand.cs" />
     <Page Include="LabPages\Lab1Page.xaml">
@@ -80,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LabPages\Lab2Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LabPages\Lab3Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,7 +150,7 @@
       <Name>yakov.TI.Lab2</Name>
     </ProjectReference>
     <ProjectReference Include="..\yakov.TI.Lab3\yakov.TI.Lab3.csproj">
-      <Project>{c77ff746-7df1-4808-9a15-1afc83806b7f}</Project>
+      <Project>{15ea2c5c-285e-443d-8f36-6241f076d72f}</Project>
       <Name>yakov.TI.Lab3</Name>
     </ProjectReference>
   </ItemGroup>
