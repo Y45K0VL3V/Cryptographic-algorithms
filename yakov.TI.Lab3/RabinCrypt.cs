@@ -9,7 +9,7 @@ namespace yakov.TI.Lab3
 {
     public class RabinCrypt
     {
-        public byte[] Encrypt(BigInteger privateKeyQ, BigInteger privateKeyP, out BigInteger publicKeyN, BigInteger publicKeyB,  byte[] inputData)
+        public static byte[] Encrypt(BigInteger privateKeyQ, BigInteger privateKeyP, out BigInteger publicKeyN, BigInteger publicKeyB,  byte[] inputData)
         {
             if (!RabinHelpMath.IsNumberPrime(privateKeyP) || !RabinHelpMath.IsNumberPrime(privateKeyQ))
                 throw new Exception("Not all keys are prime.");
@@ -21,20 +21,51 @@ namespace yakov.TI.Lab3
             return Encrypt(publicKeyN, publicKeyB, inputData);
         }
 
-        public byte[] Encrypt(BigInteger publicKeyN, BigInteger publicKeyB, byte[] inputData)
+        public static byte[] Encrypt(BigInteger publicKeyN, BigInteger publicKeyB, byte[] inputData)
         {
             if (publicKeyN >= publicKeyB)
                 throw new Exception("Public key B must be lower, than N");
 
-            byte[] outputData = new byte[publicKeyN.GetByteCount() * inputData.Length];
+            byte[] encryptedData = new byte[publicKeyN.GetByteCount() * inputData.Length];
 
             for(int i = 0; i <= inputData.Length - 1; i++)
             {
                 byte currByte = inputData[i];
-                (currByte * (currByte + publicKeyB) % publicKeyN).ToByteArray().CopyTo(outputData, i * publicKeyN.GetByteCount());
+                (currByte * (currByte + publicKeyB) % publicKeyN).ToByteArray().CopyTo(encryptedData, i * publicKeyN.GetByteCount());
             }
 
-            return outputData;
+            return encryptedData;
+        }
+
+        private static long s_currEncryptedPos;
+
+        public static byte[] Decrypt(BigInteger privateKeyQ, BigInteger privateKeyP, BigInteger publicKeyB, byte[] encryptedData)
+        {
+            s_currEncryptedPos = 0;
+            BigInteger publicKeyN = privateKeyP * privateKeyQ;
+
+            for (long i = 1; i <= encryptedData.Length/publicKeyN.GetByteCount(); i++)
+            {
+                var currNumber = new BigInteger(GetNumberBytes(encryptedData, publicKeyN.GetByteCount()));
+            }
+            
+        }
+
+        // For decrypt only.
+        private static byte[] GetNumberBytes(byte[] srcArray, int length)
+        {
+            var bytes = new byte[length];
+            long endPos = s_currEncryptedPos + length - 1;
+
+            try
+            {
+                while (s_currEncryptedPos <= endPos)
+                    // Works properly, if length stays the same for full array.
+                    bytes[s_currEncryptedPos % length] = srcArray[s_currEncryptedPos++];
+            }
+            catch { return new byte[length]; }
+
+            return bytes;
         }
     }
 }
