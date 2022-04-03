@@ -44,11 +44,40 @@ namespace yakov.TI.Lab3
             s_currEncryptedPos = 0;
             BigInteger publicKeyN = privateKeyP * privateKeyQ;
 
-            for (long i = 1; i <= encryptedData.Length/publicKeyN.GetByteCount(); i++)
+            var decryptedBytes = new byte[encryptedData.Length/publicKeyN.GetByteCount()];
+
+            for (long i = 0; i <= encryptedData.Length/publicKeyN.GetByteCount() - 1; i++)
             {
                 var currNumber = new BigInteger(GetNumberBytes(encryptedData, publicKeyN.GetByteCount()));
+                decryptedBytes[i] = DecryptNumber(currNumber, privateKeyQ, privateKeyP, publicKeyN, publicKeyB);
             }
             
+            return decryptedBytes;
+        }
+
+        private static byte DecryptNumber(BigInteger number, BigInteger privateKeyQ, BigInteger privateKeyP, BigInteger publicKeyN, BigInteger publicKeyB)
+        {
+            BigInteger discriminant = (publicKeyB * publicKeyB + 4 * number) % publicKeyN;
+
+            var mp = BigInteger.ModPow(discriminant, (privateKeyP + 1) / 4, privateKeyP);
+            var mq = BigInteger.ModPow(discriminant, (privateKeyQ + 1) / 4, privateKeyQ);
+
+            RabinHelpMath.ExtendedEuclidean(privateKeyP, privateKeyQ, out BigInteger yp, out BigInteger yq);
+           
+            var mResults = new BigInteger[4]
+            {
+                    (yp * privateKeyP * mq + yq * privateKeyQ * mp) % publicKeyN,
+                    publicKeyN,
+                    (yp * privateKeyP * mq - yq * privateKeyQ * mp) % publicKeyN,
+                    publicKeyN
+            };
+            (mResults[1], mResults[3]) = (publicKeyN - mResults[0], publicKeyN - mResults[2]);
+
+            foreach (BigInteger currRes in mResults)
+                if (currRes.GetByteCount() == 1)
+                    return currRes.ToByteArray().First();
+
+            return 0;
         }
 
         // For decrypt only.
