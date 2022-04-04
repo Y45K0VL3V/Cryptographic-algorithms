@@ -52,6 +52,7 @@ namespace yakov.TI.VM
                 {
                     Mode = CryptMode.Encryption;
                     IsPublicCrypt = true;
+                    ProcessErrors();
                 }
             }
         }
@@ -65,6 +66,7 @@ namespace yakov.TI.VM
                 {
                     Mode = CryptMode.Decryption;
                     IsPublicCrypt = false;
+                    ProcessErrors();
                 }
             }
         }
@@ -72,18 +74,6 @@ namespace yakov.TI.VM
         #region Keys activity
 
         private KeyMode _keyToEnter = KeyMode.None;
-
-        //public bool IsPrivateCrypt
-        //{
-        //    get
-        //    {
-        //        if (_keyToEnter == KeyMode.None)
-        //            return true;
-
-        //        return _keyToEnter == KeyMode.CreateNew;
-        //    }
-        //    set => _keyToEnter = value ? KeyMode.CreateNew : KeyMode.None;
-        //}
 
         public bool IsPublicCrypt
         {
@@ -122,6 +112,9 @@ namespace yakov.TI.VM
 
                     if (!RabinHelpMath.IsNumberPrime((BigInteger)_privateKeyP))
                         throw new ArgumentException("Key isn't prime.");
+
+                    if (_privateKeyP % 4 != 3)
+                        throw new ArgumentException("Key % 4 must be 3");
 
                     _errorFields.keyP = false;
 
@@ -164,6 +157,9 @@ namespace yakov.TI.VM
 
                     if (!RabinHelpMath.IsNumberPrime((BigInteger)_privateKeyQ))
                         throw new ArgumentException("Key isn't prime.");
+
+                    if (_privateKeyQ % 4 != 3)
+                        throw new ArgumentException("Key % 4 must be 3");
 
                     _errorFields.keyQ = false;
 
@@ -354,25 +350,34 @@ namespace yakov.TI.VM
             {
                 return _saveProcessedFile ?? (_saveProcessedFile = new RelayCommand(obj =>
                 {
-                    //byte[] resultBytes;
-                    //switch (Mode)
-                    //{
-                    //    case CryptMode.Encryption:
-                    //        resultBytes = RabinCrypt.Encrypt();
-                    //        break;
+                    if (!IsFirstKeysSet || _errorFields.keyB || _fileInputBytes.Length == 0)
+                        return;
 
-                    //    case CryptMode.Decryption:
-                    //        resultBytes = RabinCrypt.Decrypt();
-                    //        break;
-                    //}
+                    byte[] resultBytes = default;
+                    switch (Mode)
+                    {
+                        case CryptMode.Encryption:
+                            if (_keyToEnter == KeyMode.CreateNew)
+                            {
+                                resultBytes = RabinCrypt.Encrypt((BigInteger)_privateKeyQ, (BigInteger)_privateKeyP, out BigInteger publicN, (BigInteger)_publicKeyB, _fileInputBytes);
+                                PublicKeyN = publicN.ToString();
+                            }
+                            else
+                            {
+                                resultBytes = RabinCrypt.Encrypt((BigInteger)_publicKeyN, (BigInteger)_publicKeyB, _fileInputBytes);
+                            }
+                            break;
 
-                    
+                        case CryptMode.Decryption:
+                            resultBytes = RabinCrypt.Decrypt((BigInteger)_privateKeyQ, (BigInteger)_privateKeyP, (BigInteger)_publicKeyB, _fileInputBytes);
+                            break;
+                    }
 
-                    //SaveFileDialog saveFileDialog = new SaveFileDialog();
-                    //if (saveFileDialog.ShowDialog() == true)
-                    //{
-                    //    File.WriteAllBytes(saveFileDialog.FileName, resultBytes);
-                    //}
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    if (saveFileDialog.ShowDialog() == true)
+                    {
+                        File.WriteAllBytes(saveFileDialog.FileName, resultBytes);
+                    }
                 }));
             }
         }

@@ -23,7 +23,7 @@ namespace yakov.TI.Lab3
 
         public static byte[] Encrypt(BigInteger publicKeyN, BigInteger publicKeyB, byte[] inputData)
         {
-            if (publicKeyN >= publicKeyB)
+            if (publicKeyN <= publicKeyB)
                 throw new Exception("Public key B must be lower, than N");
 
             int maxEncryptedCapacity = publicKeyN.ToByteArray().Length;
@@ -66,18 +66,24 @@ namespace yakov.TI.Lab3
 
             RabinHelpMath.ExtendedEuclidean(privateKeyP, privateKeyQ, out BigInteger yp, out BigInteger yq);
            
-            var mResults = new BigInteger[4]
+            var dResults = new BigInteger[4]
             {
                     (yp * privateKeyP * mq + yq * privateKeyQ * mp) % publicKeyN,
                     publicKeyN,
                     (yp * privateKeyP * mq - yq * privateKeyQ * mp) % publicKeyN,
                     publicKeyN
             };
-            (mResults[1], mResults[3]) = (publicKeyN - mResults[0], publicKeyN - mResults[2]);
+            (dResults[1], dResults[3]) = (publicKeyN - dResults[0], publicKeyN - dResults[2]);
+
+            var mResults = new BigInteger[4];
+            for (int i = 0; i < 4; i++)
+            {
+                mResults[i] = ((dResults[i] - publicKeyB).IsEven) ? (dResults[i] - publicKeyB)/2 % publicKeyN : (dResults[i] + publicKeyN - publicKeyB) / 2 % publicKeyN;
+            }
 
             foreach (BigInteger currRes in mResults)
-                if (currRes.ToByteArray().Length == 1)
-                    return currRes.ToByteArray().First();
+                if (currRes >= 0 && currRes <= 255)
+                    return currRes.ToByteArray()[0];
 
             return 0;
         }
