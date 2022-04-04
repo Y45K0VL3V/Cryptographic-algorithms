@@ -60,6 +60,7 @@
                          VerticalContentAlignment="Center"
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
+                         materialDesign:ValidationAssist.OnlyShowOnFocus="True"
                          Text="{Binding PrivateKeyP, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 <TextBox Grid.Column="0" 
                          Grid.Row="1"
@@ -72,6 +73,7 @@
                          VerticalContentAlignment="Center"
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
+                         materialDesign:ValidationAssist.OnlyShowOnFocus="True"
                          Text="{Binding PrivateKeyQ, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 <TextBox Grid.Column="2"
                          Grid.Row="0"
@@ -83,6 +85,7 @@
                          MinWidth="120"
                          HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Center"
+                         IsEnabled="{Binding IsPublicCrypt, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
                          Text="{Binding PublicKeyN, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
@@ -96,6 +99,7 @@
                          MinWidth="120"
                          HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Center"
+                         IsEnabled="{Binding IsFirstKeysSet}"
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
                          Text="{Binding PublicKeyB, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>

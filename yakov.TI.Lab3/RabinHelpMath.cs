@@ -11,7 +11,10 @@ namespace yakov.TI.Lab3
     {
         public static bool IsNumberPrime(BigInteger num)
         {
-            for (int i = 2; i <= 100; i++)
+            if (num == 0)
+                return false;
+
+            for (int i = 2; i <= ((num > 100) ? 100 : (num - 1)); i++)
             {
                 var n = BigInteger.ModPow(i, num - 1, num);
                 if (n != 1) 
