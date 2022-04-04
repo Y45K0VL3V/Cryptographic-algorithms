@@ -9,7 +9,7 @@ namespace yakov.TI.Lab3
 {
     public class RabinCrypt
     {
-        public static byte[] Encrypt(BigInteger privateKeyQ, BigInteger privateKeyP, out BigInteger publicKeyN, BigInteger publicKeyB,  byte[] inputData)
+        public static byte[] Encrypt(BigInteger privateKeyQ, BigInteger privateKeyP, out BigInteger publicKeyN, BigInteger publicKeyB,  byte[] inputData, out string encryptedDec)
         {
             if (!RabinHelpMath.IsNumberPrime(privateKeyP) || !RabinHelpMath.IsNumberPrime(privateKeyQ))
                 throw new Exception("Not all keys are prime.");
@@ -18,23 +18,27 @@ namespace yakov.TI.Lab3
                 throw new Exception("Not all private keys %4 == 3");
 
             publicKeyN = privateKeyP * privateKeyQ;
-            return Encrypt(publicKeyN, publicKeyB, inputData);
+            return Encrypt(publicKeyN, publicKeyB, inputData, out encryptedDec);
         }
 
-        public static byte[] Encrypt(BigInteger publicKeyN, BigInteger publicKeyB, byte[] inputData)
+        public static byte[] Encrypt(BigInteger publicKeyN, BigInteger publicKeyB, byte[] inputData, out string encryptedDec)
         {
             if (publicKeyN <= publicKeyB)
                 throw new Exception("Public key B must be lower, than N");
 
             int maxEncryptedCapacity = publicKeyN.ToByteArray().Length;
             byte[] encryptedData = new byte[maxEncryptedCapacity * inputData.Length];
+            var sbEncryptedDec = new StringBuilder();
 
             for(int i = 0; i <= inputData.Length - 1; i++)
             {
                 byte currByte = inputData[i];
-                (currByte * (currByte + publicKeyB) % publicKeyN).ToByteArray().CopyTo(encryptedData, i * maxEncryptedCapacity);
+                var encryptedNum = currByte * (currByte + publicKeyB) % publicKeyN;
+                sbEncryptedDec.Append(encryptedNum + " ");
+                encryptedNum.ToByteArray().CopyTo(encryptedData, i * maxEncryptedCapacity);
             }
 
+            encryptedDec = sbEncryptedDec.ToString();
             return encryptedData;
         }
 

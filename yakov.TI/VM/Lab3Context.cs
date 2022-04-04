@@ -357,15 +357,17 @@ namespace yakov.TI.VM
                     switch (Mode)
                     {
                         case CryptMode.Encryption:
+                            string decResult;
                             if (_keyToEnter == KeyMode.CreateNew)
                             {
-                                resultBytes = RabinCrypt.Encrypt((BigInteger)_privateKeyQ, (BigInteger)_privateKeyP, out BigInteger publicN, (BigInteger)_publicKeyB, _fileInputBytes);
+                                resultBytes = RabinCrypt.Encrypt((BigInteger)_privateKeyQ, (BigInteger)_privateKeyP, out BigInteger publicN, (BigInteger)_publicKeyB, _fileInputBytes, out decResult);
                                 PublicKeyN = publicN.ToString();
                             }
                             else
                             {
-                                resultBytes = RabinCrypt.Encrypt((BigInteger)_publicKeyN, (BigInteger)_publicKeyB, _fileInputBytes);
+                                resultBytes = RabinCrypt.Encrypt((BigInteger)_publicKeyN, (BigInteger)_publicKeyB, _fileInputBytes, out decResult);
                             }
+                            DestFileDataDec = decResult;
                             break;
 
                         case CryptMode.Decryption:
