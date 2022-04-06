@@ -35,7 +35,7 @@ namespace yakov.TI.VM
         private void ProcessErrors()
         {
             if ((_keyToEnter == KeyMode.CreateNew && !_errorFields.keyP && !_errorFields.keyQ) ||
-                ((_keyToEnter == KeyMode.None || _keyToEnter == KeyMode.None) && !_errorFields.keyN))
+                ((_keyToEnter == KeyMode.None || _keyToEnter == KeyMode.UsePublicKey) && !_errorFields.keyN))
                 IsFirstKeysSet = true;
             else
                 IsFirstKeysSet = false;
