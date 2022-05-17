@@ -110,7 +110,7 @@ namespace yakov.TI.VM
 
                     _privateKeyP = res;
 
-                    if (!RabinHelpMath.IsNumberPrime((BigInteger)_privateKeyP))
+                    if (!HelpMath.IsNumberPrime((BigInteger)_privateKeyP))
                         throw new ArgumentException("Key isn't prime.");
 
                     if (_privateKeyP % 4 != 3)
@@ -155,7 +155,7 @@ namespace yakov.TI.VM
 
                     _privateKeyQ = res;
 
-                    if (!RabinHelpMath.IsNumberPrime((BigInteger)_privateKeyQ))
+                    if (!HelpMath.IsNumberPrime((BigInteger)_privateKeyQ))
                         throw new ArgumentException("Key isn't prime.");
 
                     if (_privateKeyQ % 4 != 3)

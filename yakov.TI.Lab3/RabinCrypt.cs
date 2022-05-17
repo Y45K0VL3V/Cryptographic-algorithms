@@ -11,7 +11,7 @@ namespace yakov.TI.Lab3
     {
         public static byte[] Encrypt(BigInteger privateKeyQ, BigInteger privateKeyP, out BigInteger publicKeyN, BigInteger publicKeyB,  byte[] inputData, out string encryptedDec)
         {
-            if (!RabinHelpMath.IsNumberPrime(privateKeyP) || !RabinHelpMath.IsNumberPrime(privateKeyQ))
+            if (!HelpMath.IsNumberPrime(privateKeyP) || !HelpMath.IsNumberPrime(privateKeyQ))
                 throw new Exception("Not all keys are prime.");
 
             if (privateKeyP % 4 != 3 || privateKeyQ % 4 != 3)
@@ -68,7 +68,7 @@ namespace yakov.TI.Lab3
             var mp = BigInteger.ModPow(discriminant, (privateKeyP + 1) / 4, privateKeyP);
             var mq = BigInteger.ModPow(discriminant, (privateKeyQ + 1) / 4, privateKeyQ);
 
-            RabinHelpMath.ExtendedEuclidean(privateKeyP, privateKeyQ, out BigInteger yp, out BigInteger yq);
+            HelpMath.ExtendedEuclidean(privateKeyP, privateKeyQ, out BigInteger yp, out BigInteger yq);
            
             var dResults = new BigInteger[4]
             {

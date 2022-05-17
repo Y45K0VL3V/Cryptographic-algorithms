@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace yakov.TI.Lab3
 {
-    public static class RabinHelpMath
+    public static class HelpMath
     {
         public static bool IsNumberPrime(BigInteger num)
         {

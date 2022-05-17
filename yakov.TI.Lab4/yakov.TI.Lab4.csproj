@@ -43,8 +43,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DSA.cs" />
+    <Compile Include="DSAParamsValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleHash.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\yakov.TI.Lab3\yakov.TI.Lab3.csproj">
+      <Project>{15ea2c5c-285e-443d-8f36-6241f076d72f}</Project>
+      <Name>yakov.TI.Lab3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
