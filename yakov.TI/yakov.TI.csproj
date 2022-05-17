@@ -154,6 +154,10 @@
       <Project>{15ea2c5c-285e-443d-8f36-6241f076d72f}</Project>
       <Name>yakov.TI.Lab3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\yakov.TI.Lab4\yakov.TI.Lab4.csproj">
+      <Project>{86b66eb3-b886-4d4f-9e8b-9898ce1bfa41}</Project>
+      <Name>yakov.TI.Lab4</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Close_32px.png" />

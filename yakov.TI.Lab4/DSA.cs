@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace yakov.TI.Lab4
 {
-    public class Class1
+    public class DSA
     {
     }
 }
