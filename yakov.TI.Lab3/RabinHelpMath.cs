@@ -26,6 +26,25 @@ namespace yakov.TI.Lab3
             return true;         
         }
 
+        public static BigInteger PowFunc(this BigInteger thisNum, BigInteger Pow, BigInteger Mod)
+        {
+            BigInteger Result = 1;
+            BigInteger Bit = thisNum % Mod;
+
+            while (Pow > 0)
+            {
+                if ((Pow & 1) == 1)
+                {
+                    Result *= Bit;
+                    Result %= Mod;
+                }
+                Bit *= Bit;
+                Bit %= Mod;
+                Pow >>= 1;
+            }
+            return Result;
+        }
+
         public static BigInteger ExtendedEuclidean(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y)
         {
             if (b < a)

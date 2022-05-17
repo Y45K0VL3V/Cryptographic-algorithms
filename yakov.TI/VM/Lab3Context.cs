@@ -198,6 +198,9 @@ namespace yakov.TI.VM
                     if (!BigInteger.TryParse(value, out BigInteger res))
                         throw new ArgumentException("Key must contain only digits.");
 
+                    if (res <= 255)
+                        throw new ArgumentException("Key must be more, than 255");
+
                     _publicKeyN = res;
                     _errorFields.keyN = false;
                 }
