@@ -21,8 +21,19 @@ namespace yakov.TI.Lab4
 
         public static byte[] ToSign(byte[] input, Params @params)
         {
+            BigInteger inputHash = SimpleHash.ToHash(input, @params.q);
 
-            throw new NotImplementedException();
+            BigInteger g = BigInteger.ModPow(@params.h, (@params.p - 1) / @params.q, @params.p);
+
+            BigInteger rKey = BigInteger.ModPow(g, @params.k, @params.p) % @params.q;
+            BigInteger sKey = ((inputHash + @params.x*rKey)/@params.k) % @params.q;
+
+            if (rKey == 0 || sKey == 0)
+            {
+                throw new Exception("Enter other k param.");
+            }
+
+            return (byte[])input.Concat(Encoding.UTF8.GetBytes($", {rKey}, {sKey}"));
         }
     }
 }
