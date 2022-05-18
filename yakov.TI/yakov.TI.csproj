@@ -77,9 +77,13 @@
     <Compile Include="LabPages\LabNoContentPage.xaml.cs">
       <DependentUpon>LabNoContentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LabPages\Lab4Page.xaml.cs">
+      <DependentUpon>Lab4Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VM\Lab1Context.cs" />
     <Compile Include="VM\Lab2Context.cs" />
     <Compile Include="VM\Lab3Context.cs" />
+    <Compile Include="VM\Lab4Context.cs" />
     <Compile Include="VM\MainContext.cs" />
     <Compile Include="VM\RelayCommand.cs" />
     <Page Include="LabPages\Lab1Page.xaml">
@@ -95,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LabPages\LabNoContentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LabPages\Lab4Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
