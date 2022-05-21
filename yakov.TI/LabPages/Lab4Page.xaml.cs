@@ -17,11 +17,11 @@ using yakov.TI.VM;
 namespace yakov.TI.LabPages
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for Lab4Page.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class Lab4Page : Page
     {
-        public Page1()
+        public Lab4Page()
         {
             InitializeComponent();
             DataContext = new Lab4Context();
