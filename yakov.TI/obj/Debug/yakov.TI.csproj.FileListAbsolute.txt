@@ -35,3 +35,7 @@ C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.csproj.CoreCom
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.csproj.CopyComplete
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.exe
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\yakov.TI.pdb
+C:\Метрология\ТИ\yakov.TI\yakov.TI\bin\Debug\yakov.TI.Lab4.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI\bin\Debug\yakov.TI.Lab4.pdb
+C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\Lab4Page.g.cs
+C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\Lab4Page.baml

@@ -30,10 +30,12 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="1"
+                <TextBlock Grid.Column="2"
                            Text="Settings"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
@@ -45,13 +47,10 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             Margin="0,0,0,5"
-                            VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <RadioButton GroupName="CryptMode" Content="Encryption" IsChecked="{Binding IsEncryption}"/>
-                    <RadioButton GroupName="CryptMode" Content="Decryption" IsChecked="{Binding IsDecryption}"/>
-                </StackPanel>
+                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBox Grid.Column="0"
                          Grid.Row="0"
-                         materialDesign:HintAssist.Hint="Private key (P)"
+                         materialDesign:HintAssist.Hint="Key (P)"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"
                          Margin="5"  
@@ -61,10 +60,10 @@
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
                          materialDesign:ValidationAssist.OnlyShowOnFocus="True"
-                         Text="{Binding PrivateKeyP, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                         Text="{Binding KeyP, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 <TextBox Grid.Column="0" 
                          Grid.Row="1"
-                         materialDesign:HintAssist.Hint="Private key (Q)"
+                         materialDesign:HintAssist.Hint="Key (Q)"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"
                          Margin="5"  
@@ -74,10 +73,36 @@
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
                          materialDesign:ValidationAssist.OnlyShowOnFocus="True"
-                         Text="{Binding PrivateKeyQ, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                <TextBox Grid.Column="2"
+                         Text="{Binding KeyQ, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <TextBox Grid.Column="1" 
+                         Grid.Row="1"
+                         materialDesign:HintAssist.Hint="Key (H)"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Margin="5"  
+                         MinWidth="120"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         materialDesign:ValidationAssist.Background="Transparent"
+                         materialDesign:ValidationAssist.HorizontalAlignment="Center"
+                         materialDesign:ValidationAssist.OnlyShowOnFocus="True"
+                         Text="{Binding KeyH, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <TextBox Grid.Column="3" 
+                         Grid.Row="1"
+                         materialDesign:HintAssist.Hint="Key (X)"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Margin="5"  
+                         MinWidth="120"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         materialDesign:ValidationAssist.Background="Transparent"
+                         materialDesign:ValidationAssist.HorizontalAlignment="Center"
+                         materialDesign:ValidationAssist.OnlyShowOnFocus="True"
+                         Text="{Binding KeyX, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <TextBox Grid.Column="5"
                          Grid.Row="0"
-                         materialDesign:HintAssist.Hint="Public key (N)"
+                         materialDesign:HintAssist.Hint="Key (K)"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"
                          TextWrapping="Wrap"
@@ -88,10 +113,10 @@
                          IsEnabled="{Binding IsPublicCrypt, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
-                         Text="{Binding PublicKeyN, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                <TextBox Grid.Column="2"
+                         Text="{Binding KeyK, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <TextBox Grid.Column="5"
                          Grid.Row="1"
-                         materialDesign:HintAssist.Hint="Public key (B)"
+                         materialDesign:HintAssist.Hint="Public key (Y)"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"
                          TextWrapping="Wrap"
@@ -102,7 +127,7 @@
                          IsEnabled="{Binding IsFirstKeysSet}"
                          materialDesign:ValidationAssist.Background="Transparent"
                          materialDesign:ValidationAssist.HorizontalAlignment="Center"
-                         Text="{Binding PublicKeyB, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                         Text="{Binding PublicKeyY, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </Grid>
         </materialDesign:Card>
 
@@ -137,18 +162,6 @@
                          Text="{Binding SourceFileDataDec}"                     
                          VerticalScrollBarVisibility="Visible"
                          IsReadOnly="True"/>
-
-                <TextBox Grid.Row="1"
-                         Grid.Column="1"
-                         VerticalAlignment="Stretch"
-                         HorizontalAlignment="Stretch"
-                         Margin="15,10,20,10" 
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                         materialDesign:HintAssist.Hint="Destination file data (decimal)"
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Visible"
-                         IsReadOnly="True"
-                         Text="{Binding DestFileDataDec}"/>
             </Grid>
         </materialDesign:Card>
 

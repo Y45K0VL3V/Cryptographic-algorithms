@@ -1,0 +1,9 @@
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\bin\Debug\yakov.TI.Lab4.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\bin\Debug\yakov.TI.Lab4.pdb
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\bin\Debug\yakov.TI.Lab3.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\bin\Debug\yakov.TI.Lab3.pdb
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\obj\Debug\yakov.TI.Lab4.csproj.AssemblyReference.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\obj\Debug\yakov.TI.Lab4.csproj.CoreCompileInputs.cache
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\obj\Debug\yakov.TI.Lab4.csproj.CopyComplete
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\obj\Debug\yakov.TI.Lab4.dll
+C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab4\obj\Debug\yakov.TI.Lab4.pdb

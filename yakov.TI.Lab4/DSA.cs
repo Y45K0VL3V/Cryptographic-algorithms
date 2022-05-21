@@ -7,19 +7,22 @@ using System.Threading.Tasks;
 
 namespace yakov.TI.Lab4
 {
-    public struct Params
+    public struct DSAParams
     {
         public BigInteger q { get; set; }
         public BigInteger p { get; set; }
         public BigInteger h { get; set; }
         public BigInteger x { get; set; }
         public BigInteger k { get; set; }
+        
+        // Open key
+        public BigInteger y { get; set; }
     }
 
     public class DSA
     {
 
-        public static byte[] ToSign(byte[] input, Params @params, out BigInteger openKey)
+        public static byte[] ToSign(byte[] input, DSAParams @params)
         {
             BigInteger inputHash = SimpleHash.ToHash(input, @params.q);
 
@@ -33,11 +36,11 @@ namespace yakov.TI.Lab4
                 throw new Exception("Enter other k param.");
             }
 
-            openKey = BigInteger.ModPow(g, @params.x, @params.p);
+            @params.y = BigInteger.ModPow(g, @params.x, @params.p);
             return (byte[])input.Concat(Encoding.UTF8.GetBytes($", {rKey}, {sKey}"));
         }
 
-        public static bool IsSignCorrect(byte[] input, Params @params, BigInteger openKey, out BigInteger rawTextHash)
+        public static bool IsSignCorrect(byte[] input, DSAParams @params, out BigInteger rawTextHash)
         {
             string fullInputText = Encoding.UTF8.GetString(input);
             
@@ -76,7 +79,7 @@ namespace yakov.TI.Lab4
             BigInteger u1 = rawTextHash * w % @params.q;
             BigInteger u2 = rKey * w % @params.q;
             BigInteger g = BigInteger.ModPow(@params.h, (@params.p - 1) / @params.q, @params.p);
-            BigInteger v = BigInteger.Pow(g, (int)u1) * BigInteger.Pow(openKey, (int)u2) % @params.p % @params.q;
+            BigInteger v = BigInteger.Pow(g, (int)u1) * BigInteger.Pow(@params.y, (int)u2) % @params.p % @params.q;
 
             return rKey == v ? true : false;
         }

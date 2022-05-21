@@ -10,7 +10,7 @@ namespace yakov.TI.Lab4
 {
     public static class DSAParamsValidator
     {
-        public static bool Validate(Params @params)
+        public static bool Validate(DSAParams @params)
         {
             if (!HelpMath.IsNumberPrime(@params.q))
                 throw new ArgumentException("Q must be prime.");

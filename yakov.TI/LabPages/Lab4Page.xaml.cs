@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using yakov.TI.VM;
 
 namespace yakov.TI.LabPages
 {
@@ -23,6 +24,7 @@ namespace yakov.TI.LabPages
         public Page1()
         {
             InitializeComponent();
+            DataContext = new Lab4Context();
         }
     }
 }
