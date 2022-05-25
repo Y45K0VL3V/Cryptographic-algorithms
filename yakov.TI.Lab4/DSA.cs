@@ -22,7 +22,7 @@ namespace yakov.TI.Lab4
     public class DSA
     {
 
-        public static byte[] ToSign(byte[] input, DSAParams @params)
+        public static byte[] ToSign(byte[] input, ref DSAParams @params)
         {
             BigInteger inputHash = SimpleHash.ToHash(input, @params.q);
 
@@ -40,7 +40,7 @@ namespace yakov.TI.Lab4
             return (byte[])input.Concat(Encoding.UTF8.GetBytes($", {rKey}, {sKey}"));
         }
 
-        public static bool IsSignCorrect(byte[] input, DSAParams @params, out BigInteger rawTextHash)
+        public static bool IsSignCorrect(byte[] input, ref DSAParams @params, out BigInteger rawTextHash)
         {
             string fullInputText = Encoding.UTF8.GetString(input);
             

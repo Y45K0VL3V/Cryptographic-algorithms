@@ -16,70 +16,85 @@ namespace yakov.TI.VM
 
         private DSAParams _paramsEDS = new DSAParams();
 
-        public BigInteger KeyP
+        public string KeyP
         {
-            get => _paramsEDS.p;
+            get => _paramsEDS.p != 0 ? _paramsEDS.p.ToString() : null;
             set
             {
-                _paramsEDS.p = value;
+                _paramsEDS.p = BigInteger.Parse(value);
                 OnPropertyChanged("Key P");
             }
         }
 
-        public BigInteger KeyQ
+        public string KeyQ
         {
-            get => _paramsEDS.q;
+            get => _paramsEDS.q != 0 ? _paramsEDS.q.ToString() : null;
             set
             {
-                _paramsEDS.q = value;
+                _paramsEDS.q = BigInteger.Parse(value);
                 OnPropertyChanged("Key Q");
             }
         }
 
-        public BigInteger KeyH
+        public string KeyH
         {
-            get => _paramsEDS.h;
+            get => _paramsEDS.h != 0 ? _paramsEDS.h.ToString() : null;
             set
             {
-                _paramsEDS.h = value;
+                _paramsEDS.h = BigInteger.Parse(value);
                 OnPropertyChanged("Key H");
             }
         }
 
-        public BigInteger KeyX
+        public string KeyX
         {
-            get => _paramsEDS.x;
+            get => _paramsEDS.x != 0 ? _paramsEDS.x.ToString() : null;
             set
             {
-                _paramsEDS.x = value;
+                _paramsEDS.x = BigInteger.Parse(value);
                 OnPropertyChanged("Key X");
             }
         }
 
-        public BigInteger KeyK
+        public string KeyK
         {
-            get => _paramsEDS.k;
+            get => _paramsEDS.k != 0 ? _paramsEDS.k.ToString() : null;
             set
             {
-                _paramsEDS.k = value;
+                _paramsEDS.k = BigInteger.Parse(value);
                 OnPropertyChanged("Key K");
             }
         }
 
-        public BigInteger PublicKeyY
+        public string PublicKeyY
         {
-            get => _paramsEDS.y;
+            get => _paramsEDS.y != 0 ? _paramsEDS.y.ToString() : null;
             set
             {
-                _paramsEDS.y = value;
+                _paramsEDS.y = BigInteger.Parse(value);
                 OnPropertyChanged("Key Y");
             }
         }
 
 
-        #region File interact.
-
         private byte[] _currentBytes;
+
+        private string _currentTextFile;
+        public string CurrentTextFile
+        {
+            get
+            {
+                return _currentTextFile;
+            }
+            set
+            {
+                _currentTextFile = value;
+                ////TODO: Auto-checking sign.
+                OnPropertyChanged("CurrentTextFile");
+            }
+        }
+
+        #region File interact.
 
         private string _filePath;
         public string FilePath
@@ -91,16 +106,10 @@ namespace yakov.TI.VM
             set
             {
                 _filePath = value;
-
-                StringBuilder temp = new();
                 _currentBytes = File.ReadAllBytes(value);
-                foreach (byte currByte in _currentBytes)
-                {
-                    temp.Append(currByte.ToString() + " ");
-                }
+                CurrentTextFile = File.ReadAllText(value);
 
                 //ClearFields();
-                //SourceFileDataDec = temp.ToString();
 
                 OnPropertyChanged("FilePath");
             }
@@ -133,13 +142,26 @@ namespace yakov.TI.VM
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     if (saveFileDialog.ShowDialog() == true)
                     {
-                       // File.WriteAllBytes(saveFileDialog.FileName, resultBytes);
+                       File.WriteAllBytes(saveFileDialog.FileName, _currentBytes);
                     }
                 }));
             }
         }
 
         #endregion
+
+        private RelayCommand _doSignFile;
+        public RelayCommand DoSignFile
+        {
+            get
+            {
+                return _doSignFile ?? (_doSignFile = new RelayCommand(obj =>
+                {
+                    _currentBytes = DSA.ToSign(_currentBytes, ref _paramsEDS);
+                    CurrentTextFile = Encoding.UTF8.GetString(_currentBytes);
+                }));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string prop = "")

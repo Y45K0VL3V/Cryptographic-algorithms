@@ -135,6 +135,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -142,7 +143,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
-                           Grid.ColumnSpan="2"
+                           Grid.ColumnSpan="3"
                            Text="Crypt info"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
@@ -159,9 +160,13 @@
                          Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                          materialDesign:HintAssist.Hint="Source file data (decimal)"
                          TextWrapping="Wrap"
-                         Text="{Binding SourceFileDataDec}"                     
+                         Text="{Binding CurrentTextFile}"                     
                          VerticalScrollBarVisibility="Visible"
                          IsReadOnly="True"/>
+                <Button Grid.Row="1" Grid.Column="1" Width="75" Style="{StaticResource MaterialDesignPaperDarkButton}" Command="{Binding DoSignFile}">
+                    <materialDesign:PackIcon Kind="FileSign" Height="25" Width="25">
+                    </materialDesign:PackIcon>
+                </Button>
             </Grid>
         </materialDesign:Card>
 
