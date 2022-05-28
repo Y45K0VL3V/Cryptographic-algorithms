@@ -24,6 +24,9 @@ namespace yakov.TI.Lab4
 
         public static byte[] ToSign(byte[] input, ref DSAParams @params)
         {
+            List<byte> result = new List<byte>();
+            result.AddRange(input);
+
             BigInteger inputHash = SimpleHash.ToHash(input, @params.q);
 
             BigInteger g = BigInteger.ModPow(@params.h, (@params.p - 1) / @params.q, @params.p);
@@ -37,7 +40,8 @@ namespace yakov.TI.Lab4
             }
 
             @params.y = BigInteger.ModPow(g, @params.x, @params.p);
-            return (byte[])input.Concat(Encoding.UTF8.GetBytes($", {rKey}, {sKey}"));
+            result.AddRange(Encoding.UTF8.GetBytes($", {rKey}, {sKey}"));
+            return result.ToArray();
         }
 
         public static bool IsSignCorrect(byte[] input, ref DSAParams @params, out BigInteger rawTextHash)
