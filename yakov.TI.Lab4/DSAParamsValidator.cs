@@ -39,8 +39,15 @@ namespace yakov.TI.Lab4
             if (@params.p == 0)
                 return false;
 
-            if ((@params.p - 1) % @params.q != 0)
+            try
+            {
+                if ((@params.p - 1) % @params.q != 0)
+                    throw new ArgumentException("Q must be divider of p-1.");
+            }
+            catch (DivideByZeroException)
+            {
                 throw new ArgumentException("Q must be divider of p-1.");
+            }
 
             return true;
         }

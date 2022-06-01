@@ -163,7 +163,8 @@
                          Text="{Binding CurrentTextFile}"                     
                          VerticalScrollBarVisibility="Visible"
                          IsReadOnly="True"/>
-                <Button Grid.Row="1" Grid.Column="1" Width="75" Style="{StaticResource MaterialDesignPaperDarkButton}" Command="{Binding DoSignFile}">
+                <Button Grid.Row="1" Grid.Column="1" Width="75" Style="{StaticResource MaterialDesignPaperDarkButton}" Command="{Binding DoSignFile}"
+                        IsEnabled="{Binding IsSignPossible, Mode=OneWay}">
                     <materialDesign:PackIcon Kind="FileSign" Height="25" Width="25">
                     </materialDesign:PackIcon>
                 </Button>

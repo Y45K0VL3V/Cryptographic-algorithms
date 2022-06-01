@@ -17,11 +17,6 @@ namespace yakov.TI.VM
 
         private DSAParams _paramsEDS = new DSAParams();
 
-        private void CheckKeys()
-        {
-            DSAParamsValidator.Validate(_paramsEDS);
-        }
-
         #region Keys
         private void UpdateKeysInfo()
         {
@@ -33,13 +28,63 @@ namespace yakov.TI.VM
             OnPropertyChanged("PublicKeyY");
         }
 
+        #region Sign keys validation logic.
+        private enum KeysValue
+        {
+            y = 1,
+            h = 2,
+            q = 4,
+            p = 8,
+            k = 16,
+            x = 32
+        }
+        
+        // Keys set as 1 - x, 2 - k, 3 - p, 4 - q, 5 - h, 6 - y.
+        // 111110 : keys p,q,h,x,k must be set.
+        private const byte NEEDED_KEYS_TO_SIGN = 0b111110;
+        // 001111 : keys p,q,h,y must be set. 
+        private const byte NEEDED_KEYS_CHECK_SIGN = 0b001111;
+
+        private byte _validatedKeys = 0;
+        public byte ValidatedKeys
+        {
+            get => _validatedKeys;
+            set
+            {
+                _validatedKeys = value;
+                OnPropertyChanged("IsSignPossible");
+                OnPropertyChanged("IsCheckSignPossible");
+            }
+        }
+
+        public bool IsSignPossible
+        {
+            get => ValidatedKeys == NEEDED_KEYS_TO_SIGN;
+        }
+
+        public bool IsCheckSignPossible
+        {
+            get => ValidatedKeys == NEEDED_KEYS_CHECK_SIGN;
+        }
+
+        private void ModifyValidatedKeys(bool isValid, byte keyValue)
+        {
+            if (isValid)
+                ValidatedKeys |= keyValue;
+            else
+                ValidatedKeys &= (byte)~keyValue;
+        }
+        #endregion
+
         public string KeyP
         {
             get => _paramsEDS.p != 0 ? _paramsEDS.p.ToString() : null;
             set
             {
                 _paramsEDS.p = BigInteger.Parse(value);
-                OnPropertyChanged("KeyP");
+                ModifyValidatedKeys(DSAParamsValidator.Validate(_paramsEDS, "p") ?? false, (byte)KeysValue.p);
+
+                UpdateKeysInfo();
             }
         }
 
@@ -49,7 +94,9 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.q = BigInteger.Parse(value);
-                OnPropertyChanged("KeyQ");
+                ModifyValidatedKeys(DSAParamsValidator.Validate(_paramsEDS, "q") ?? false, (byte)KeysValue.q);
+
+                UpdateKeysInfo();
             }
         }
 
@@ -59,7 +106,9 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.h = BigInteger.Parse(value);
-                OnPropertyChanged("KeyH");
+                ModifyValidatedKeys(DSAParamsValidator.Validate(_paramsEDS, "h") ?? false, (byte)KeysValue.h);
+
+                UpdateKeysInfo();
             }
         }
 
@@ -69,7 +118,9 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.x = BigInteger.Parse(value);
-                OnPropertyChanged("KeyX");
+                ModifyValidatedKeys(DSAParamsValidator.Validate(_paramsEDS, "x") ?? false, (byte)KeysValue.x);
+
+                UpdateKeysInfo();
             }
         }
 
@@ -79,7 +130,9 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.k = BigInteger.Parse(value);
-                OnPropertyChanged("KeyK");
+                ModifyValidatedKeys(DSAParamsValidator.Validate(_paramsEDS, "k") ?? false, (byte)KeysValue.k);
+
+                UpdateKeysInfo();
             }
         }
 
@@ -89,7 +142,9 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.y = BigInteger.Parse(value);
-                OnPropertyChanged("PublicKeyY");
+                ModifyValidatedKeys(DSAParamsValidator.Validate(_paramsEDS, "y") ?? false, (byte)KeysValue.y);
+
+                UpdateKeysInfo();
             }
         }
         #endregion
