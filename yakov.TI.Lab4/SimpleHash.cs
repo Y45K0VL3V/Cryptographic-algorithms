@@ -14,7 +14,7 @@ namespace yakov.TI.Lab4
         public static BigInteger ToHash(byte[] input, BigInteger modNum)
         {
             try
-            {
+           {
                 BigInteger currHash = Convert.ToInt32(Math.Pow(DEFAULT_HASH + input[0], 2)) % modNum;
 
                 for (int i = 1; i < input.Length; i++)
@@ -24,7 +24,7 @@ namespace yakov.TI.Lab4
             }
             catch
             {
-                return 0;
+                return DEFAULT_HASH;
             }
         }
     }

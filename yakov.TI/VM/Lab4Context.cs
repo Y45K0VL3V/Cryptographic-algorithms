@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -16,6 +17,12 @@ namespace yakov.TI.VM
 
         private DSAParams _paramsEDS = new DSAParams();
 
+        private void CheckKeys()
+        {
+            DSAParamsValidator.Validate(_paramsEDS);
+        }
+
+        #region Keys
         public string KeyP
         {
             get => _paramsEDS.p != 0 ? _paramsEDS.p.ToString() : null;
@@ -72,10 +79,10 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.y = BigInteger.Parse(value);
-                OnPropertyChanged("Key Y");
+                OnPropertyChanged("PublicKeyY");
             }
         }
-
+        #endregion
 
         private byte[] _currentBytes;
 
@@ -89,8 +96,23 @@ namespace yakov.TI.VM
             set
             {
                 _currentTextFile = value;
+                CheckSign();
                 ////TODO: Auto-checking sign.
                 OnPropertyChanged("CurrentTextFile");
+            }
+        }
+
+        private BigInteger _textHash;
+        public string TextHash 
+        {
+            get
+            {
+                return _textHash.ToString();
+            }
+            set
+            {
+                _textHash = BigInteger.Parse(value ?? "");
+                OnPropertyChanged("TextHash");
             }
         }
 
@@ -158,9 +180,21 @@ namespace yakov.TI.VM
                 return _doSignFile ?? (_doSignFile = new RelayCommand(obj =>
                 {
                     _currentBytes = DSA.ToSign(_currentBytes, ref _paramsEDS);
-                    CurrentTextFile = Encoding.UTF8.GetString(_currentBytes);
+                    CurrentTextFile = Encoding.ASCII.GetString(_currentBytes);
+                    PublicKeyY = _paramsEDS.y.ToString();
                 }));
             }
+        }
+
+        private void CheckSign()
+        {
+            if (DSA.IsSignCorrect(_currentBytes, _paramsEDS, out BigInteger textHash))
+            {
+                Debug.WriteLine("true");
+            }
+            else
+                Debug.WriteLine("false");
+            TextHash = textHash.ToString();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
