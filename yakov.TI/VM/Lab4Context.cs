@@ -23,13 +23,23 @@ namespace yakov.TI.VM
         }
 
         #region Keys
+        private void UpdateKeysInfo()
+        {
+            OnPropertyChanged("KeyP");
+            OnPropertyChanged("KeyQ");
+            OnPropertyChanged("KeyH");
+            OnPropertyChanged("KeyX");
+            OnPropertyChanged("KeyK");
+            OnPropertyChanged("PublicKeyY");
+        }
+
         public string KeyP
         {
             get => _paramsEDS.p != 0 ? _paramsEDS.p.ToString() : null;
             set
             {
                 _paramsEDS.p = BigInteger.Parse(value);
-                OnPropertyChanged("Key P");
+                OnPropertyChanged("KeyP");
             }
         }
 
@@ -39,7 +49,7 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.q = BigInteger.Parse(value);
-                OnPropertyChanged("Key Q");
+                OnPropertyChanged("KeyQ");
             }
         }
 
@@ -49,7 +59,7 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.h = BigInteger.Parse(value);
-                OnPropertyChanged("Key H");
+                OnPropertyChanged("KeyH");
             }
         }
 
@@ -59,7 +69,7 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.x = BigInteger.Parse(value);
-                OnPropertyChanged("Key X");
+                OnPropertyChanged("KeyX");
             }
         }
 
@@ -69,7 +79,7 @@ namespace yakov.TI.VM
             set
             {
                 _paramsEDS.k = BigInteger.Parse(value);
-                OnPropertyChanged("Key K");
+                OnPropertyChanged("KeyK");
             }
         }
 
@@ -181,7 +191,7 @@ namespace yakov.TI.VM
                 {
                     _currentBytes = DSA.ToSign(_currentBytes, ref _paramsEDS);
                     CurrentTextFile = Encoding.ASCII.GetString(_currentBytes);
-                    PublicKeyY = _paramsEDS.y.ToString();
+                    UpdateKeysInfo();
                 }));
             }
         }
