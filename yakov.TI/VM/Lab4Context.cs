@@ -78,8 +78,16 @@ namespace yakov.TI.VM
 
         private void DoKeyAfterSet(string propName, string keyName, byte keyValue)
         {
-            ModifyValidatedKeys(DSAParamsValidator.Validate(_paramsEDS, keyName) ?? false, keyValue);
-            OnPropertyChanged(propName);
+            bool isValid = false;
+            try
+            {
+                isValid = DSAParamsValidator.Validate(_paramsEDS, keyName) ?? false;
+            }
+            finally
+            {
+                ModifyValidatedKeys(isValid, keyValue);
+                OnPropertyChanged(propName);
+            }
         }
 
         public string KeyP
@@ -87,7 +95,7 @@ namespace yakov.TI.VM
             get => _paramsEDS.p != 0 ? _paramsEDS.p.ToString() : null;
             set
             {
-                _paramsEDS.p = BigInteger.Parse(value);
+                _paramsEDS.p = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
                 UpdateKeysInfo();
             }
         }
@@ -97,7 +105,7 @@ namespace yakov.TI.VM
             get => _paramsEDS.q != 0 ? _paramsEDS.q.ToString() : null;
             set
             {
-                _paramsEDS.q = BigInteger.Parse(value);
+                _paramsEDS.q = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
                 UpdateKeysInfo();
             }
         }
@@ -107,7 +115,7 @@ namespace yakov.TI.VM
             get => _paramsEDS.h != 0 ? _paramsEDS.h.ToString() : null;
             set
             {
-                _paramsEDS.h = BigInteger.Parse(value);
+                _paramsEDS.h = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
                 UpdateKeysInfo();
             }
         }
@@ -117,7 +125,7 @@ namespace yakov.TI.VM
             get => _paramsEDS.x != 0 ? _paramsEDS.x.ToString() : null;
             set
             {
-                _paramsEDS.x = BigInteger.Parse(value);
+                _paramsEDS.x = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
                 UpdateKeysInfo();
             }
         }
@@ -127,7 +135,7 @@ namespace yakov.TI.VM
             get => _paramsEDS.k != 0 ? _paramsEDS.k.ToString() : null;
             set
             {
-                _paramsEDS.k = BigInteger.Parse(value);
+                _paramsEDS.k = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
                 UpdateKeysInfo();
             }
         }
@@ -137,13 +145,13 @@ namespace yakov.TI.VM
             get => _paramsEDS.y != 0 ? _paramsEDS.y.ToString() : null;
             set
             {
-                _paramsEDS.y = BigInteger.Parse(value);
+                _paramsEDS.y = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
                 UpdateKeysInfo();
             }
         }
         #endregion
 
-        private byte[] _currentBytes;
+        private byte[] _currentBytes = new byte[] {0};
 
         private string _currentTextFile;
         public string CurrentTextFile
@@ -155,8 +163,12 @@ namespace yakov.TI.VM
             set
             {
                 _currentTextFile = value;
-                CheckSign();
-                ////TODO: Auto-checking sign.
+
+                if (IsCheckSignPossible)
+                    CheckSign();
+                else
+                    SignValidityAnswer = null;
+
                 OnPropertyChanged("CurrentTextFile");
             }
         }
@@ -175,6 +187,17 @@ namespace yakov.TI.VM
             }
         }
 
+        private string _signValidityAnswer = null;
+        public string SignValidityAnswer
+        {
+            get => _signValidityAnswer;
+            set
+            {
+                _signValidityAnswer = value;
+                OnPropertyChanged("SignValidityAnswer");
+            }
+        }
+
         #region File interact.
 
         private string _filePath;
@@ -189,8 +212,6 @@ namespace yakov.TI.VM
                 _filePath = value;
                 _currentBytes = File.ReadAllBytes(value);
                 CurrentTextFile = File.ReadAllText(value);
-
-                //ClearFields();
 
                 OnPropertyChanged("FilePath");
             }
@@ -245,14 +266,27 @@ namespace yakov.TI.VM
             }
         }
 
+        private RelayCommand _doCheckSignFile;
+        public RelayCommand DoCheckSignFile
+        {
+            get
+            {
+                return _doCheckSignFile ?? (_doCheckSignFile = new RelayCommand(obj =>
+                {
+                    CheckSign();
+                }));
+            }
+        }
+
         private void CheckSign()
         {
             if (DSA.IsSignCorrect(_currentBytes, _paramsEDS, out BigInteger textHash))
             {
-                Debug.WriteLine("true");
+                SignValidityAnswer = "Sign valid.";
             }
             else
-                Debug.WriteLine("false");
+                SignValidityAnswer = "Sign invalid";
+
             TextHash = textHash.ToString();
         }
 
