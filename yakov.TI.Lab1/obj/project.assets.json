@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Метрология\\ТИ\\yakov.TI\\yakov.TI.Lab1\\yakov.TI.Lab1.csproj",
+      "projectUniqueName": "C:\\Users\\yakov\\OneDrive\\Рабочий стол\\Новая папка\\Theory-Information-Labs\\yakov.TI.Lab1\\yakov.TI.Lab1.csproj",
       "projectName": "yakov.TI.Lab1",
-      "projectPath": "C:\\Метрология\\ТИ\\yakov.TI\\yakov.TI.Lab1\\yakov.TI.Lab1.csproj",
+      "projectPath": "C:\\Users\\yakov\\OneDrive\\Рабочий стол\\Новая папка\\Theory-Information-Labs\\yakov.TI.Lab1\\yakov.TI.Lab1.csproj",
       "packagesPath": "C:\\Users\\yakov\\.nuget\\packages\\",
-      "outputPath": "C:\\Метрология\\ТИ\\yakov.TI\\yakov.TI.Lab1\\obj\\",
+      "outputPath": "C:\\Users\\yakov\\OneDrive\\Рабочий стол\\Новая папка\\Theory-Information-Labs\\yakov.TI.Lab1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\yakov\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gO0mhihG2UzNkOm9iNphZS2pypacnDMzdo3Aqs8FXQZUMTGd2I4x2XxKU4auuU03Kf/fR7tOn5bV8Gm5eieLnA==",
+  "dgSpecHash": "BoCL9d7JpMeiFuWyzyqYYkwPKRuMeRQX0d7x8b5knUQpp82ZmBC+Vn1PxK1piDjakETbgITIqrWR21+3BqYP8g==",
   "success": true,
-  "projectFilePath": "C:\\Метрология\\ТИ\\yakov.TI\\yakov.TI.Lab1\\yakov.TI.Lab1.csproj",
+  "projectFilePath": "C:\\Users\\yakov\\OneDrive\\Рабочий стол\\Новая папка\\Theory-Information-Labs\\yakov.TI.Lab1\\yakov.TI.Lab1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yakov\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\yakov\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

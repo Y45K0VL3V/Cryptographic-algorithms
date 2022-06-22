@@ -4,3 +4,9 @@ C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\bin\Debug\yakov.TI.Lab3.dll
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\bin\Debug\yakov.TI.Lab3.pdb
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\obj\Debug\yakov.TI.Lab3.dll
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab3\obj\Debug\yakov.TI.Lab3.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab3\bin\Debug\yakov.TI.Lab3.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab3\bin\Debug\yakov.TI.Lab3.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab3\obj\Debug\yakov.TI.Lab3.csproj.AssemblyReference.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab3\obj\Debug\yakov.TI.Lab3.csproj.CoreCompileInputs.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab3\obj\Debug\yakov.TI.Lab3.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab3\obj\Debug\yakov.TI.Lab3.pdb

@@ -39,3 +39,44 @@ C:\Метрология\ТИ\yakov.TI\yakov.TI\bin\Debug\yakov.TI.Lab4.dll
 C:\Метрология\ТИ\yakov.TI\yakov.TI\bin\Debug\yakov.TI.Lab4.pdb
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\Lab4Page.g.cs
 C:\Метрология\ТИ\yakov.TI\yakov.TI\obj\Debug\LabPages\Lab4Page.baml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.exe.config
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.exe
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\MaterialDesignColors.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.Lab1.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.Lab2.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.Lab3.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.Lab4.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.Lab1.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.Lab2.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.Lab3.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\yakov.TI.Lab4.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\MaterialDesignColors.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.csproj.AssemblyReference.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.csproj.SuggestedBindingRedirects.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\Lab1Page.g.cs
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\Lab2Page.g.cs
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\Lab3Page.g.cs
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\LabNoContentPage.g.cs
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\Lab4Page.g.cs
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\MainWindow.g.cs
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\App.g.cs
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI_MarkupCompile.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI_MarkupCompile.lref
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\App.baml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\Lab1Page.baml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\Lab2Page.baml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\Lab3Page.baml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\LabNoContentPage.baml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\LabPages\Lab4Page.baml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\MainWindow.baml
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.g.resources
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.Properties.Resources.resources
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.csproj.GenerateResource.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.csproj.CoreCompileInputs.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.csproj.CopyComplete
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.exe
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI\obj\Debug\yakov.TI.pdb

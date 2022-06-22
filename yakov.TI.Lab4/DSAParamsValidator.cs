@@ -87,7 +87,7 @@ namespace yakov.TI.Lab4
 
         private static bool ValidateY(DSAParams @params)
         {
-            if (@params.x == 0)
+            if (@params.y == 0)
                 return false;
 
             return true;

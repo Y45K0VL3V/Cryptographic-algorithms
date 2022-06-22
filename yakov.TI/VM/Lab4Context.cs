@@ -18,17 +18,38 @@ namespace yakov.TI.VM
         private DSAParams _paramsEDS = new DSAParams();
 
         #region Keys
-        private void UpdateKeysInfo()
+        delegate void UpdatePropDelegate();
+        private void UpdateKeysInfo(string senderKey)
         {
-            DoKeyAfterSet("KeyP", "p", (byte)KeysValue.p);
-            DoKeyAfterSet("KeyQ", "q", (byte)KeysValue.q);
-            DoKeyAfterSet("KeyH", "h", (byte)KeysValue.h);
-            DoKeyAfterSet("KeyX", "x", (byte)KeysValue.x);
-            DoKeyAfterSet("KeyK", "k", (byte)KeysValue.k);
-            DoKeyAfterSet("PublicKeyY", "y", (byte)KeysValue.y);
+            Dictionary<string, UpdatePropDelegate> keyPropsUpdateMethods = new Dictionary<string, UpdatePropDelegate>()
+            {
+                ["KeyP"] = () => KeyP = KeyP,
+                ["KeyQ"] = () => KeyQ = KeyQ,
+                ["KeyH"] = () => KeyH = KeyH,
+                ["KeyX"] = () => KeyX = KeyX,
+                ["KeyK"] = () => KeyK = KeyK,
+                ["PublicKeyY"] = () => PublicKeyY = PublicKeyY,
+            };
+
+            //DoKeyAfterSet("KeyP", "p", (byte)KeysValue.p);
+            //DoKeyAfterSet("KeyQ", "q", (byte)KeysValue.q);
+            //DoKeyAfterSet("KeyH", "h", (byte)KeysValue.h);
+            //DoKeyAfterSet("KeyX", "x", (byte)KeysValue.x);
+            //DoKeyAfterSet("KeyK", "k", (byte)KeysValue.k);
+            //DoKeyAfterSet("PublicKeyY", "y", (byte)KeysValue.y);
+
+            if (_isKeysChanged)
+                foreach (string propName in keyPropsUpdateMethods.Keys)
+                {
+                    if (propName != senderKey)
+                        keyPropsUpdateMethods[propName]?.Invoke();
+                }
         }
 
         #region Sign keys validation logic.
+
+        private bool _isKeysChanged = false;
+
         private enum KeysValue
         {
             y = 1,
@@ -83,6 +104,10 @@ namespace yakov.TI.VM
             {
                 isValid = DSAParamsValidator.Validate(_paramsEDS, keyName) ?? false;
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 ModifyValidatedKeys(isValid, keyValue);
@@ -95,8 +120,21 @@ namespace yakov.TI.VM
             get => _paramsEDS.p != 0 ? _paramsEDS.p.ToString() : null;
             set
             {
-                _paramsEDS.p = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
-                UpdateKeysInfo();
+                BigInteger newValue = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
+                _isKeysChanged = newValue == _paramsEDS.p ? false : true;
+                _paramsEDS.p = newValue;
+                try
+                {
+                    DoKeyAfterSet("KeyP", "p", (byte)KeysValue.p);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    UpdateKeysInfo("KeyP");
+                }
             }
         }
 
@@ -105,8 +143,21 @@ namespace yakov.TI.VM
             get => _paramsEDS.q != 0 ? _paramsEDS.q.ToString() : null;
             set
             {
-                _paramsEDS.q = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
-                UpdateKeysInfo();
+                BigInteger newValue = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
+                _isKeysChanged = newValue == _paramsEDS.q ? false : true;
+                _paramsEDS.q = newValue;
+                try
+                {
+                    DoKeyAfterSet("KeyQ", "q", (byte)KeysValue.q);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    UpdateKeysInfo("KeyQ");
+                }
             }
         }
 
@@ -115,8 +166,21 @@ namespace yakov.TI.VM
             get => _paramsEDS.h != 0 ? _paramsEDS.h.ToString() : null;
             set
             {
-                _paramsEDS.h = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
-                UpdateKeysInfo();
+                BigInteger newValue = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
+                _isKeysChanged = newValue == _paramsEDS.h ? false : true;
+                _paramsEDS.h = newValue;                
+                try
+                {
+                    DoKeyAfterSet("KeyH", "h", (byte)KeysValue.h);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    UpdateKeysInfo("KeyH");
+                }
             }
         }
 
@@ -125,8 +189,21 @@ namespace yakov.TI.VM
             get => _paramsEDS.x != 0 ? _paramsEDS.x.ToString() : null;
             set
             {
-                _paramsEDS.x = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
-                UpdateKeysInfo();
+                BigInteger newValue = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
+                _isKeysChanged = newValue == _paramsEDS.x ? false : true;
+                _paramsEDS.x = newValue;
+                try
+                {
+                    DoKeyAfterSet("KeyX", "x", (byte)KeysValue.x);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    UpdateKeysInfo("KeyX");
+                }
             }
         }
 
@@ -135,8 +212,21 @@ namespace yakov.TI.VM
             get => _paramsEDS.k != 0 ? _paramsEDS.k.ToString() : null;
             set
             {
-                _paramsEDS.k = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
-                UpdateKeysInfo();
+                BigInteger newValue = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
+                _isKeysChanged = newValue == _paramsEDS.k ? false : true;
+                _paramsEDS.k = newValue;
+                try
+                {
+                    DoKeyAfterSet("KeyK", "k", (byte)KeysValue.k);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    UpdateKeysInfo("KeyK");
+                }
             }
         }
 
@@ -145,8 +235,21 @@ namespace yakov.TI.VM
             get => _paramsEDS.y != 0 ? _paramsEDS.y.ToString() : null;
             set
             {
-                _paramsEDS.y = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
-                UpdateKeysInfo();
+                BigInteger newValue = BigInteger.Parse(String.IsNullOrEmpty(value) ? "0" : value);
+                _isKeysChanged = newValue == _paramsEDS.y ? false : true;
+                _paramsEDS.y = newValue;
+                try
+                {
+                    DoKeyAfterSet("PublicKeyY", "y", (byte)KeysValue.y);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                   UpdateKeysInfo("PublicKeyY"); 
+                }
             }
         }
         #endregion
@@ -261,7 +364,8 @@ namespace yakov.TI.VM
                 {
                     _currentBytes = DSA.ToSign(_currentBytes, ref _paramsEDS);
                     CurrentTextFile = Encoding.ASCII.GetString(_currentBytes);
-                    UpdateKeysInfo();
+                    _isKeysChanged = true;
+                    UpdateKeysInfo(null);
                 }));
             }
         }

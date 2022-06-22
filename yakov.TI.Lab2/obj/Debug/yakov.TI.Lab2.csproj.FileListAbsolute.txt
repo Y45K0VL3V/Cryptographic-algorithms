@@ -4,3 +4,9 @@ C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.cspr
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.csproj.CoreCompileInputs.cache
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.dll
 C:\Метрология\ТИ\yakov.TI\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab2\bin\Debug\yakov.TI.Lab2.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab2\bin\Debug\yakov.TI.Lab2.pdb
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.csproj.AssemblyReference.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.csproj.CoreCompileInputs.cache
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.dll
+C:\Users\yakov\OneDrive\Рабочий стол\Новая папка\Theory-Information-Labs\yakov.TI.Lab2\obj\Debug\yakov.TI.Lab2.pdb
